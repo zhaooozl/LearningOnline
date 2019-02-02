@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/white">
+
+    <TextView
+        android:id="@+id/tv_name_exam"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="计算机科学导论试卷"
+        android:textColor="@android:color/black"
+        android:textSize="24sp"
+        android:layout_marginTop="20dp"
+        />
+
+    <TextView
+        android:id="@+id/tv_total_score"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="总分：100"
+        android:textSize="18sp"
+        android:textColor="@color/colorFont"
+        android:layout_alignLeft="@id/tv_name_exam"
+        android:layout_below="@id/tv_name_exam"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        />
+
+    <TextView
+        android:id="@+id/tv_teacher_exam"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="出卷人：张三"
+        android:textSize="18sp"
+        android:textColor="@color/colorFont"
+        android:layout_below="@id/tv_name_exam"
+        android:layout_toRightOf="@id/tv_total_score"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        />
+
+
+</RelativeLayout>

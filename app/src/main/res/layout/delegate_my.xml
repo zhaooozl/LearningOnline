@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="160dp"
+            android:background="@color/colorTheme">
+
+            <ImageView
+                android:id="@+id/iv_profile_pic"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_centerInParent="true"
+                android:src="@drawable/default_profile"
+                />
+
+            <TextView
+                android:id="@+id/tv_username"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="苏珊"
+                android:textSize="22sp"
+                android:textColor="@android:color/white"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="10dp"
+                />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/tv_student_id"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:text="学号: 2016211365"
+            android:textColor="@color/colorFont"
+            android:background="@color/colorItemBg"
+            android:textSize="18sp"
+            android:layout_marginTop="10dp"
+            android:paddingLeft="10dp"
+            android:gravity="center_vertical"
+            />
+
+        <TextView
+            android:id="@+id/tv_gender"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:text="性别: 女"
+            android:textColor="@color/colorFont"
+            android:background="@color/colorItemBg"
+            android:textSize="18sp"
+            android:layout_marginTop="10dp"
+            android:paddingLeft="10dp"
+            android:gravity="center_vertical"
+            />
+
+        <TextView
+            android:id="@+id/tv_birth"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:text="出生年月: 1997年12月"
+            android:textColor="@color/colorFont"
+            android:background="@color/colorItemBg"
+            android:textSize="18sp"
+            android:layout_marginTop="10dp"
+            android:paddingLeft="10dp"
+            android:gravity="center_vertical"
+            />
+
+        <TextView
+            android:id="@+id/tv_collage"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:text="学院：计算机与信息工程"
+            android:textColor="@color/colorFont"
+            android:background="@color/colorItemBg"
+            android:textSize="18sp"
+            android:layout_marginTop="10dp"
+            android:paddingLeft="10dp"
+            android:gravity="center_vertical"
+            />
+
+        <TextView
+            android:id="@+id/tv_major"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:text="专业：计算机科学与技术"
+            android:textColor="@color/colorFont"
+            android:background="@color/colorItemBg"
+            android:textSize="18sp"
+            android:layout_marginTop="10dp"
+            android:paddingLeft="10dp"
+            android:gravity="center_vertical"
+            />
+
+
+        <TextView
+            android:id="@+id/btn_changepwd"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:text="修改密码"
+            android:textColor="#E2434F"
+            android:background="@color/colorItemBg"
+            android:textSize="20sp"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            />
+
+        <TextView
+            android:id="@+id/btn_logout"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:text="退出登录"
+            android:textColor="#E2434F"
+            android:background="@color/colorItemBg"
+            android:textSize="20sp"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            />
+
+    </LinearLayout>
+
+
+</ScrollView>

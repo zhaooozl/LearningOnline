@@ -1,0 +1,58 @@
+{
+  "code": 200,
+  "msg": "ok",
+  "data": {
+    "examId": 0,
+    "examName": "《计算机科学导论》",
+    "teacherName": "",
+    "totalScore": 100,
+    "questions": [
+      {
+        "id": 0,
+        "type": 1,
+        "orderNmber": 1,
+        "title": "红茶属于( )茶",
+        "options": [
+          {
+            "key": "A",
+            "value": "半发酵"
+          },
+          {
+            "key": "B",
+            "value": "发酵"
+          },
+          {
+            "key": "C",
+            "value": "不发酵"
+          },
+          {
+            "key": "D",
+            "value": "微发酵"
+          }
+        ]
+      },
+      {
+        "id": 0,
+        "type": 2,
+        "orderNmber": 1,
+        "title": "满汉全席起兴于清代？",
+        "options": [
+          {
+            "key": "1",
+            "value": "对"
+          },
+          {
+            "key": "0",
+            "value": "错"
+          }
+        ]
+      },
+      {
+        "id": 0,
+        "type": 3,
+        "orderNmber": 1,
+        "title": "吃冰淇淋不解渴主要是因为它含有[blank]"
+      }
+    ]
+  }
+}

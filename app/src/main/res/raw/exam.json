@@ -1,0 +1,74 @@
+{
+  "code": 200,
+  "msg": "ok",
+  "data": [
+    {
+      "layouttype": 0,
+      "examId": 0,
+      "examName": "《天行九歌》",
+      "teacherName": "张子房",
+      "totalScore": 100
+    },
+    {
+      "layouttype": 2,
+      "title": "一、选择题(总分30)"
+    },
+    {
+      "layouttype": 3,
+      "id": 0,
+      "orderNmber": 1,
+      "question": "红茶属于( )茶",
+      "options": [
+        {
+          "key": "A",
+          "value": "半发酵"
+        },
+        {
+          "key": "B",
+          "value": "发酵"
+        },
+        {
+          "key": "C",
+          "value": "不发酵"
+        },
+        {
+          "key": "D",
+          "value": "微发酵"
+        }
+      ]
+    },
+    {
+      "layouttype": 2,
+      "title": "二、判断题(总分30)"
+    },
+    {
+      "layouttype": 4,
+      "id": 0,
+      "orderNmber": 1,
+      "question": "满汉全席起兴于清代？",
+      "options": [
+        {
+          "key": "1",
+          "value": "对"
+        },
+        {
+          "key": "0",
+          "value": "错"
+        }
+      ]
+    },
+    {
+      "layouttype": 2,
+      "title": "三、填空题(总分40)"
+    },
+    {
+      "layouttype": 5,
+      "id": 0,
+      "orderNmber": 1,
+      "question": "吃冰淇淋不解渴主要是因为它含有[blank]"
+    },
+    {
+      "layouttype": 1
+    }
+  ]
+}
