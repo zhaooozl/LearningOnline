@@ -4,14 +4,25 @@
     android:layout_height="match_parent">
 
     <android.support.v7.widget.AppCompatEditText
+        android:id="@+id/et_userid"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="60dp"
+        android:hint="请输入学号（工号）"
+        android:inputType="number"
+        />
+
+    <android.support.v7.widget.AppCompatEditText
         android:id="@+id/et_oldPasswd"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:layout_below="@id/et_username"
-        android:layout_marginTop="60dp"
+        android:layout_below="@id/et_userid"
         android:hint="请输入旧密码"
+        android:inputType="textPassword"
         />
 
     <android.support.v7.widget.AppCompatEditText
@@ -22,6 +33,7 @@
         android:layout_marginRight="20dp"
         android:layout_below="@id/et_oldPasswd"
         android:hint="请输入新密码"
+        android:inputType="textPassword"
         />
 
     <android.support.v7.widget.AppCompatEditText
@@ -32,6 +44,7 @@
         android:layout_marginRight="20dp"
         android:layout_below="@id/et_newPasswd"
         android:hint="请输入新密码"
+        android:inputType="textPassword"
         />
 
     <android.support.v7.widget.AppCompatButton

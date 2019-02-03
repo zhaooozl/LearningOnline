@@ -64,11 +64,12 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                 login();
                 break;
             case R.id.btn_go_changpwd:
+                Intent intent1 = new Intent(LoginActivity.this, ChangePwdActivity.class);
+                startActivity(intent1);
                 break;
-
             case R.id.btn_go_register:
-                Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
-                startActivity(intent);
+                Intent intent2 = new Intent(LoginActivity.this, RegisterActivity.class);
+                startActivity(intent2);
                 break;
 
             default:

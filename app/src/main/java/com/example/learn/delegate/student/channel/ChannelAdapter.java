@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 
 import com.example.learn.config.ConfigType;
 import com.example.learn.config.Configurator;
-import com.example.learn.delegate.base.BaseDelegate;
 import com.example.learn.delegate.student.LearnDelegate;
 import com.example.learn.entiry.TeacherBean;
 import com.example.learn.learningonline.R;
@@ -41,7 +40,7 @@ public class ChannelAdapter extends RecyclerView.Adapter<ChannelHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull ChannelHolder holder, int position) {
-        holder.mChannelNameTV.setText(mDatas.get(position).getName());
+        holder.mChannelNameTV.setText(mDatas.get(position).getUserName());
         if (channelCurIndex == position) {
             holder.mChannelNameTV.setTextColor(mContext.getResources().getColor(R.color.colorTheme));
         } else {

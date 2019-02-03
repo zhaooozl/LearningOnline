@@ -10,6 +10,7 @@ import android.view.View;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.TypeReference;
+import com.example.learn.config.UrlConfig;
 import com.example.learn.delegate.base.BaseDelegate;
 import com.example.learn.delegate.student.channel.ChannelAdapter;
 import com.example.learn.delegate.student.content.ContentAdapter;
@@ -64,7 +65,7 @@ public class LearnDelegate extends BaseDelegate implements View.OnClickListener,
     private void getChannelData() {
         Logger.d("getChannelData: ");
         new ExOKHttp.Builder()
-                .url("http://127.0.0.1:8080/learn")
+                .url(UrlConfig.TEACHER)
                 .success(new ISuccess() {
                     @Override
                     public void onSuccess(String responseJson) {
@@ -77,7 +78,7 @@ public class LearnDelegate extends BaseDelegate implements View.OnClickListener,
                         ExPagerAdapter pagerAdapter = new ExPagerAdapter(teacherBeans.size());
                         mPager.setAdapter(pagerAdapter);
 
-                        getCoursesData(0, teacherBeans.get(0).getId());
+                        getCoursesData(0, teacherBeans.get(0).getUserId());
 
 
                     }
@@ -123,7 +124,7 @@ public class LearnDelegate extends BaseDelegate implements View.OnClickListener,
     public void onRefresh() {
         int index = channelAdapter.getCurrentItem();
         TeacherBean teacherBean = teacherBeans.get(index);
-        int id = teacherBean.getId();
+        int id = teacherBean.getUserId();
         getCoursesData(index, id);
     }
 

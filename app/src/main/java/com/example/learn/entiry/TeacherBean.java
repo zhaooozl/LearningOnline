@@ -2,30 +2,30 @@ package com.example.learn.entiry;
 
 public class TeacherBean {
 
-    private int id;
-    private String name;
+    private int userId;
+    private String userName;
 
-    public int getId() {
-        return id;
+    public int getUserId() {
+        return userId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setUserId(int id) {
+        this.userId = id;
     }
 
-    public String getName() {
-        return name;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUserName(String name) {
+        this.userName = name;
     }
 
     @Override
     public String toString() {
         return "TeacherBean{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
+                "userId=" + userId +
+                ", userName='" + userName + '\'' +
                 '}';
     }
 }

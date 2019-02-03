@@ -71,7 +71,7 @@ public abstract class BaseDelegate extends Fragment {
         List<Fragment> fragments = fm.getFragments();
         boolean isExist = false;
         for (Fragment f : fragments) {
-//            Logger.d("fragment name: " + f.getTag() + " \nfragment id: " + f.getId());
+//            Logger.d("fragment name: " + f.getTag() + " \nfragment id: " + f.getUserId());
             if (f.isVisible()) {
                 ft.hide(f);
             }
@@ -98,7 +98,7 @@ public abstract class BaseDelegate extends Fragment {
         Logger.d("isPop: " + isPop);
 //        for (Fragment f:
 //             fragments) {
-//            Logger.d("pop: " + f.getTag() + " \nfragment id: " + f.getId());
+//            Logger.d("pop: " + f.getTag() + " \nfragment id: " + f.getUserId());
 //        }
 
 //        FragmentManager fm2 = getChildFragmentManager();
@@ -106,7 +106,7 @@ public abstract class BaseDelegate extends Fragment {
 //        for (Fragment f :
 //                fragments2) {
 //
-//            Logger.d("pop2: " + f.getTag() + " \nfragment id: " + f.getId());
+//            Logger.d("pop2: " + f.getTag() + " \nfragment id: " + f.getUserId());
 //
 //        }
 

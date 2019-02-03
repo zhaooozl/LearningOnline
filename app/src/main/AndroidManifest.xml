@@ -39,6 +39,11 @@
 
         <activity android:name="com.example.learn.activity.RegisterActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+
+        <activity android:name="com.example.learn.activity.ChangePwdActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+
+
     </application>
 
 </manifest>
