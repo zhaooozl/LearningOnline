@@ -18,6 +18,8 @@ import com.example.learn.entiry.response.RespObjBean;
 import com.example.learn.learningonline.R;
 import com.example.learn.net.version1.OKHttp;
 import com.example.learn.net.version1.RequestCallback;
+import com.example.learn.storage.ExPreferences;
+import com.example.learn.storage.PrefKey;
 import com.example.learn.view.LoadingDialog;
 import com.orhanobut.logger.Logger;
 
@@ -80,10 +82,10 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     private void login() {
         final LoadingDialog loadingDialog = new LoadingDialog(this);
         loadingDialog.show();
-        String userName = etUserName.getText().toString().trim();
-        String passwd = etPasswd.getText().toString().trim();
+        final String userId = etUserName.getText().toString().trim();
+        final String passwd = etPasswd.getText().toString().trim();
 
-        String url = UrlConfig.LOGIN + "?userId=" + userName + "&passwd=" + passwd;
+        String url = UrlConfig.LOGIN + "?userId=" + userId + "&passwd=" + passwd;
         OKHttp.getInstance()
                 .get(url, new RequestCallback() {
                     @Override
@@ -95,25 +97,36 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                         int loginCode = data.getLoginCode();
                         String loginMsg = data.getLoginMsg();
                         if (loginCode == 0) {
-                            Configurator.getInstance().with(ConfigType.USER_TYPE, userType);
+
+                            Configurator.getInstance()
+                                    .with(ConfigType.USER_TYPE, userType)
+                                    .with(ConfigType.USERID, userId)
+                                    .with(ConfigType.PASSWD, passwd)
+                                    .with(ConfigType.ISLOGIN, true);
+
+                            ExPreferences.putString(PrefKey.USERID.name(), userId);
+                            ExPreferences.putString(PrefKey.PASSWD.name(), passwd);
+                            ExPreferences.putBoolean(PrefKey.ISLOGIN.name(), true);
+                            ExPreferences.putInt(PrefKey.USERTYPE.name(), userType);
+
                             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                             startActivity(intent);
                             finish();
                         } else {
                             Toast.makeText(getApplicationContext(), loginMsg, Toast.LENGTH_SHORT).show();
                         }
-//                        loadingDialog.cancel();
+                        loadingDialog.cancel();
                     }
 
                     @Override
                     public void onError(int code, String msg) {
-//                        loadingDialog.cancel();
+                        loadingDialog.cancel();
                         Toast.makeText(getApplicationContext(), "登录错误", Toast.LENGTH_SHORT).show();
                     }
 
                     @Override
                     public void onFail(Call call, IOException e) {
-//                        loadingDialog.cancel();
+                        loadingDialog.cancel();
                         Toast.makeText(getApplicationContext(), "登录请求失败", Toast.LENGTH_SHORT).show();
                     }
                 });

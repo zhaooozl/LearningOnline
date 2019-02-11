@@ -9,6 +9,10 @@ import android.widget.TextView;
 
 import com.example.learn.config.ConfigType;
 import com.example.learn.config.Configurator;
+import com.example.learn.delegate.admin.CourManagerDelegate;
+import com.example.learn.delegate.admin.ExamManagerDelegate;
+import com.example.learn.delegate.admin.StuManagerDelegate;
+import com.example.learn.delegate.admin.TeaManagerDelegate;
 import com.example.learn.delegate.student.ExamDelegate;
 import com.example.learn.delegate.student.LearnDelegate;
 import com.example.learn.delegate.base.BaseDelegate;
@@ -53,7 +57,16 @@ public class BaseBottomDelegate extends BaseDelegate implements View.OnClickList
         int theme = getResources().getColor(R.color.colorTheme);
         userType = Configurator.getInstance().get(ConfigType.USER_TYPE);
         if (userType == UserType.ADMIN) {
-
+            BottomMenuBean bean1 = new BottomMenuBean(0, "{fa-graduation-cap}", "学生管理", normal, theme);
+            BottomMenuBean bean2 = new BottomMenuBean(1, "{fa-user}", "教师管理", normal, theme);
+            BottomMenuBean bean3 = new BottomMenuBean(2, "{fa-user}", "课件管理", normal, theme);
+            BottomMenuBean bean4 = new BottomMenuBean(3, "{fa-user}", "测试管理", normal, theme);
+            BottomMenuBean bean5 = new BottomMenuBean(4, "{fa-user}", "我的", normal, theme);
+            menuBeans.add(bean1);
+            menuBeans.add(bean2);
+            menuBeans.add(bean3);
+            menuBeans.add(bean4);
+            menuBeans.add(bean5);
         } else if (userType == UserType.TEACHER) {
             BottomMenuBean learnBean = new BottomMenuBean(0, "{fa-graduation-cap}", "科目", normal, theme);
             BottomMenuBean myBean = new BottomMenuBean(1, "{fa-user}", "我的", normal, theme);
@@ -65,7 +78,6 @@ public class BaseBottomDelegate extends BaseDelegate implements View.OnClickList
             menuBeans.add(learnBean);
             menuBeans.add(myBean);
         }
-
     }
 
     @Override
@@ -117,11 +129,21 @@ public class BaseBottomDelegate extends BaseDelegate implements View.OnClickList
         if (delegate == null) {
             if (userType == UserType.ADMIN) {
                 if (index == 0) {
-
+                    delegate = new StuManagerDelegate();
+//                    Bundle bundle = new Bundle();
+//                    bundle.putString("userType", "2");
+//                    delegate.setArguments(bundle);
                 } else if (index == 1) {
-
+                    delegate = new TeaManagerDelegate();
+//                    Bundle bundle = new Bundle();
+//                    bundle.putString("userType", "1");
+//                    delegate.setArguments(bundle);
                 } else if (index == 2) {
-
+                    delegate = new CourManagerDelegate();
+                } else if (index == 3) {
+                    delegate = new ExamManagerDelegate();
+                } else if (index == 4) {
+                    delegate = new MyDelegate();
                 }
             } else if (userType == UserType.TEACHER) {
                 if (index == 0) {

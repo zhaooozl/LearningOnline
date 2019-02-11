@@ -1,6 +1,6 @@
 package com.example.learn.entiry.common;
 
-public class ChangePasswdBean {
+public class CommonStatusBean {
     private int code;
     private String msg;
 

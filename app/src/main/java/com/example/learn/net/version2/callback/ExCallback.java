@@ -47,10 +47,14 @@ public class ExCallback implements Callback {
                     @Override
                     public void run() {
                         try {
-                            iSuccess.onSuccess(response.body().string());
+                            if (iSuccess != null) {
+                                iSuccess.onSuccess(response.body().string());
+                            }
                         } catch (IOException e) {
 //                            e.printStackTrace();
-                            iError.onError();
+                            if (iError != null) {
+                                iError.onError();
+                            }
                         }
                     }
                 });
@@ -59,7 +63,9 @@ public class ExCallback implements Callback {
             handler.post(new Runnable() {
                 @Override
                 public void run() {
-                    iError.onError();
+                    if (iError != null) {
+                        iError.onError();
+                    }
                 }
             });
         }

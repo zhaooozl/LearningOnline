@@ -10,7 +10,6 @@ import android.view.ViewGroup;
 import com.example.learn.config.ConfigType;
 import com.example.learn.config.Configurator;
 import com.example.learn.delegate.base.BaseDelegate;
-import com.example.learn.delegate.student.LearnDelegate;
 import com.example.learn.entiry.CourseBean;
 import com.example.learn.learningonline.R;
 import com.orhanobut.logger.Logger;
@@ -45,7 +44,7 @@ public class ContentAdapter extends RecyclerView.Adapter<ContentHolder> {
         holder.courseName.setText(bean.getName());
         holder.ivExam.setTag(ClickType.TAKE_EXAM);
         holder.ivDownLoad.setTag(ClickType.DOWN_LOAD);
-        holder.ivExam.setOnClickListener(new ContentItemOnClickListener(delegate));
+        holder.ivExam.setOnClickListener(new ContentItemOnClickListener(mDatas.get(position).getSubjectId(), delegate));
         holder.ivDownLoad.setOnClickListener(new ContentItemOnClickListener(holder));
     }
 

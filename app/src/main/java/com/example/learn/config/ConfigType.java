@@ -4,4 +4,7 @@ public enum  ConfigType {
     APP_CONTENT,
     HANDLER,
     USER_TYPE,
+    USERID,
+    PASSWD,
+    ISLOGIN,
 }

@@ -6,10 +6,31 @@ public class UrlConfig {
 
     public static final String LOCAL_HOST = "http://127.0.0.1:8080/LearningOnline";
 
+    // 登录
     public static final String LOGIN = HOST + "/login";
+    // 注册
     public static final String REGISTER = HOST + "/register";
-    public static final String STUDENT_INFO = LOCAL_HOST + "/student";
+    // 教师
     public static final String TEACHER = HOST + "/teacher";
+    // 科目
+    public static final String SUBJECT = HOST + "/subject";
+    // 考试
+    public static final String EXAM = HOST + "/exam";
+    // 交卷
+    public static final String SUBMITPAPER = HOST + "/submitpaper";
+    // 课件
+    public static final String COURSEWARE = HOST + "/courseware";
+    // 删除课件
+    public static final String DELETE_COURSEWARE = HOST + "/deletecourse";
+    // 用户信息
+    public static final String USERINFO = HOST + "/userinfo";
+    // 试题
+    public static final String QUESTION = HOST + "/question";
+
+
+
+
+    public static final String STUDENT_INFO = LOCAL_HOST + "/student";
     public static final String EXAM_INFO = LOCAL_HOST + "/exam";
     public static final String CHANGEPASSWD = HOST + "/changepasswd";
 

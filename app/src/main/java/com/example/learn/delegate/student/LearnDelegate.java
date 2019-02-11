@@ -88,9 +88,10 @@ public class LearnDelegate extends BaseDelegate implements View.OnClickListener,
     }
 
     // 获取课程数据
-    private void getCoursesData(final int index, int teacherId) {
+    private void getCoursesData(final int index, int userId) {
+        final String url = UrlConfig.SUBJECT + "?userId=" + userId;
         new ExOKHttp.Builder()
-                .url("http://127.0.0.1:8080/courses")
+                .url(url)
                 .success(new ISuccess() {
                     @Override
                     public void onSuccess(String responseJson) {
@@ -117,6 +118,8 @@ public class LearnDelegate extends BaseDelegate implements View.OnClickListener,
             channelAdapter.notifyDataSetChanged();
 
             mPager.setCurrentItem(index);
+
+            getCoursesData(index, teacherBeans.get(index).getUserId());
         }
     }
 
@@ -137,6 +140,7 @@ public class LearnDelegate extends BaseDelegate implements View.OnClickListener,
     public void onPageSelected(int position) {
         channelAdapter.setCurrentItem(position);
         channelAdapter.notifyDataSetChanged();
+        getCoursesData(position, teacherBeans.get(position).getUserId());
     }
 
     @Override

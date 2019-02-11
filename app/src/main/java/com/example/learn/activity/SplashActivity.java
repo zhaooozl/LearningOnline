@@ -14,6 +14,8 @@ import com.example.learn.entiry.response.RespObjBean;
 import com.example.learn.learningonline.R;
 import com.example.learn.net.version1.OKHttp;
 import com.example.learn.net.version1.RequestCallback;
+import com.example.learn.storage.ExPreferences;
+import com.example.learn.storage.PrefKey;
 import com.example.learn.timer.BaseTimerTask;
 import com.example.learn.timer.OnTimerListener;
 import com.orhanobut.logger.Logger;
@@ -40,6 +42,16 @@ public class SplashActivity extends BaseActivity implements OnTimerListener {
 
     @Override
     public void onBindView(Bundle savedInstanceState) {
+
+        String userId = ExPreferences.getString(PrefKey.USERID.name());
+        boolean isLogin = ExPreferences.getBoolean(PrefKey.ISLOGIN.name());
+        int userType = ExPreferences.getInt(PrefKey.USERTYPE.name());
+        Configurator
+                .getInstance()
+                .with(ConfigType.USERID, userId)
+                .with(ConfigType.ISLOGIN, isLogin)
+                .with(ConfigType.USER_TYPE, userType);
+
 //        loginRequest();
         mTimer = new Timer();
         mTimer.schedule(new BaseTimerTask(this), 0, 1000);
@@ -53,8 +65,13 @@ public class SplashActivity extends BaseActivity implements OnTimerListener {
         Logger.d("onTimer: " + cutDown);
         if (cutDown < 0) {
             mTimer.cancel();
-            Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
-//            intent.putExtra("userType", userType);
+            Intent intent = null;
+            boolean isLogin = Configurator.getInstance().get(ConfigType.ISLOGIN);
+            if (isLogin) {
+                intent = new Intent(SplashActivity.this, MainActivity.class);
+            } else {
+                intent = new Intent(SplashActivity.this, LoginActivity.class);
+            }
             startActivity(intent);
             finish();
         } else {
@@ -68,7 +85,8 @@ public class SplashActivity extends BaseActivity implements OnTimerListener {
                     @Override
                     public void onSuccess(String responseBody) {
                         Logger.json(responseBody);
-                        RespObjBean<LoginBean> respObjBean = JSON.parseObject(responseBody, new TypeReference<RespObjBean<LoginBean>>(){});
+                        RespObjBean<LoginBean> respObjBean = JSON.parseObject(responseBody, new TypeReference<RespObjBean<LoginBean>>() {
+                        });
                         LoginBean data = respObjBean.getData();
                         int loginCode = data.getLoginCode();
                         if (loginCode == 0) {

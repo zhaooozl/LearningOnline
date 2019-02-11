@@ -3,7 +3,6 @@ package com.example.learn.activity;
 import android.os.Bundle;
 import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.AppCompatEditText;
-import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -11,7 +10,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.TypeReference;
 import com.example.learn.activity.base.BaseActivity;
 import com.example.learn.config.UrlConfig;
-import com.example.learn.entiry.common.ChangePasswdBean;
+import com.example.learn.entiry.common.CommonStatusBean;
 import com.example.learn.entiry.response.RespObjBean;
 import com.example.learn.learningonline.R;
 import com.example.learn.net.version1.OKHttp;
@@ -92,9 +91,9 @@ public class ChangePwdActivity extends BaseActivity implements View.OnClickListe
                     @Override
                     public void onSuccess(String responseBody) {
                         loadingDialog.cancel();
-                        RespObjBean<ChangePasswdBean> respObjBean = JSON.parseObject(responseBody, new TypeReference<RespObjBean<ChangePasswdBean>>() {
+                        RespObjBean<CommonStatusBean> respObjBean = JSON.parseObject(responseBody, new TypeReference<RespObjBean<CommonStatusBean>>() {
                         });
-                        ChangePasswdBean passwdBean = respObjBean.getData();
+                        CommonStatusBean passwdBean = respObjBean.getData();
                         int code = passwdBean.getCode();
                         String msg = passwdBean.getMsg();
                         // code == 0 表示修改密码成功

@@ -33,6 +33,15 @@ public class Configurator {
         return (T) APP_CONFIGS.get(key);
     }
 
-
-
+    public final void clearProfile() {
+        if (APP_CONFIGS.containsKey(ConfigType.ISLOGIN)) {
+            APP_CONFIGS.remove(ConfigType.ISLOGIN);
+        }
+        if (APP_CONFIGS.containsKey(ConfigType.USER_TYPE)) {
+            APP_CONFIGS.remove(ConfigType.USER_TYPE);
+        }
+        if (APP_CONFIGS.containsKey(ConfigType.USERID)) {
+            APP_CONFIGS.remove(ConfigType.USERID);
+        }
+    }
 }

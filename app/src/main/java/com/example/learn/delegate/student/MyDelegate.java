@@ -9,6 +9,7 @@ import android.widget.TextView;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.TypeReference;
 import com.example.learn.activity.LoginActivity;
+import com.example.learn.config.Configurator;
 import com.example.learn.config.UrlConfig;
 import com.example.learn.delegate.base.BaseDelegate;
 import com.example.learn.entiry.response.RespObjBean;
@@ -18,6 +19,7 @@ import com.example.learn.net.version2.ExOKHttp;
 import com.example.learn.net.version2.callback.IError;
 import com.example.learn.net.version2.callback.IFailure;
 import com.example.learn.net.version2.callback.ISuccess;
+import com.example.learn.storage.ExPreferences;
 import com.orhanobut.logger.Logger;
 
 import butterknife.BindView;
@@ -44,7 +46,6 @@ public class MyDelegate extends BaseDelegate {
     @BindView(R.id.btn_logout)
     TextView tvLogout;
 
-
     String url2 = "http://aikanvod.miguvideo.com/video/p/pg/100041/miguaikan_v300/common.wdml";
 
     @Override
@@ -62,6 +63,9 @@ public class MyDelegate extends BaseDelegate {
         tvLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Configurator.getInstance().clearProfile();
+                ExPreferences.clear();
+
                 Intent intent = new Intent(getActivity(), LoginActivity.class);
                 startActivity(intent);
                 getActivity().finish();

@@ -7,9 +7,27 @@ public class LayoutBean {
     private String examName;
     private String teacherName;
     private int totalScore;
+    private String score;
+    private String questionId;
     private String title;
     private String question;
     private List<Option> options;
+
+    public String getScore() {
+        return score;
+    }
+
+    public void setScore(String score) {
+        this.score = score;
+    }
+
+    public String getQuestionId() {
+        return questionId;
+    }
+
+    public void setQuestionId(String questionId) {
+        this.questionId = questionId;
+    }
 
     public int getLayouttype() {
         return layouttype;

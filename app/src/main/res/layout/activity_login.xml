@@ -11,6 +11,7 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:hint="请输入学号（工号）"
+        android:inputType="number"
         />
 
     <android.support.v7.widget.AppCompatEditText
@@ -20,6 +21,7 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_below="@id/et_username"
+        android:inputType="textPassword"
         android:hint="请输入密码"
         />
 

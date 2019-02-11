@@ -32,16 +32,16 @@
         </activity>
 
         <activity android:name="com.example.learn.activity.MainActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+            android:theme="@style/AppTheme"/>
 
         <activity android:name="com.example.learn.activity.LoginActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+            android:theme="@style/AppTheme"/>
 
         <activity android:name="com.example.learn.activity.RegisterActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+            android:theme="@style/AppTheme"/>
 
         <activity android:name="com.example.learn.activity.ChangePwdActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+            android:theme="@style/AppTheme"/>
 
 
     </application>

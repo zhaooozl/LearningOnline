@@ -2,15 +2,15 @@ package com.example.learn.entiry;
 
 public class CourseBean {
 
-    private int id;
+    private int subjectId;
     private String name;
 
-    public int getId() {
-        return id;
+    public int getSubjectId() {
+        return subjectId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setSubjectId(int id) {
+        this.subjectId = id;
     }
 
     public String getName() {
@@ -24,7 +24,7 @@ public class CourseBean {
     @Override
     public String toString() {
         return "CourseBean{" +
-                "id=" + id +
+                "subjectId=" + subjectId +
                 ", name='" + name + '\'' +
                 '}';
     }

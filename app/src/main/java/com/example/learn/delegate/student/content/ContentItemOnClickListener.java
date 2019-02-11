@@ -1,10 +1,14 @@
 package com.example.learn.delegate.student.content;
 
+import android.os.Bundle;
 import android.view.View;
 
 import com.example.learn.activity.MainActivity;
+import com.example.learn.config.ConfigType;
+import com.example.learn.config.Configurator;
 import com.example.learn.delegate.base.BaseDelegate;
 import com.example.learn.delegate.student.ExamDelegate;
+import com.example.learn.delegate.teacher.ExamPaperDelegate;
 import com.example.learn.net.download.OKHttpUtils;
 import com.example.learn.net.download.ProgressListener;
 import com.orhanobut.logger.Logger;
@@ -18,13 +22,16 @@ public class ContentItemOnClickListener implements View.OnClickListener, Progres
     private BaseDelegate delegate;
 
     private ContentHolder holder;
+    private int subjectId = -1;
 
     public ContentItemOnClickListener(ContentHolder holder) {
         this.holder = holder;
     }
 
-    public ContentItemOnClickListener(BaseDelegate delegate) {
+    public ContentItemOnClickListener(int subjectId, BaseDelegate delegate) {
         this.delegate = delegate;
+        this.subjectId = subjectId;
+        Logger.d("ContentItemOnClickListener subjectId: " + subjectId);
     }
 
 
@@ -37,37 +44,26 @@ public class ContentItemOnClickListener implements View.OnClickListener, Progres
                 new OKHttpUtils()
                         .setProgressListener(this)
                         .downLoad(url2);
-//                new ExOKHttp.Builder()
-//                        .url(url2)
-//                        .success(new ISuccess() {
-//                            @Override
-//                            public void onSuccess(String responseJson) {
-//                                Logger.d("responseJson: " + responseJson);
-//                            }
-//                        })
-//                        .failure(new IFailure() {
-//                            @Override
-//                            public void onFailure() {
-//                                Logger.d("onFailure: ");
-//
-//                            }
-//                        })
-//                        .error(new IError() {
-//                            @Override
-//                            public void onError() {
-//                                Logger.d("onError: ");
-//
-//                            }
-//                        })
-//                        .build()
-//                        .get();
-
                 break;
             case TAKE_EXAM:
-                if (delegate != null) {
-                    MainActivity ac = (MainActivity) delegate.getActivity();
-                    ac.start(new ExamDelegate());
+                MainActivity ac = (MainActivity) delegate.getActivity();
+                Bundle bundle = new Bundle();
+                bundle.putInt("subjectId", subjectId);
+                int userType = Configurator.getInstance().get(ConfigType.USER_TYPE);
+                if (userType == 2) {
+                    if (delegate != null) {
+                        ExamDelegate examDelegate = new ExamDelegate();
+                        examDelegate.setArguments(bundle);
+                        ac.start(examDelegate);
+                    }
+                } else if (userType == 1) {
+                    if (delegate != null) {
+                        ExamPaperDelegate examPaperDelegate = new ExamPaperDelegate();
+                        examPaperDelegate.setArguments(bundle);
+                        ac.start(examPaperDelegate);
+                    }
                 }
+
                 break;
             default:
 
