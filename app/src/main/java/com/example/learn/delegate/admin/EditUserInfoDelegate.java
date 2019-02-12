@@ -74,7 +74,7 @@ public class EditUserInfoDelegate extends BaseDelegate implements View.OnClickLi
 
     private void getStudentInfo(String userId) {
         mLoadingDialog.show();
-        final String url = UrlConfig.USERINFO + "?operateType=q&userId=" + userId;
+        final String url = UrlConfig.USERINFO + "?operateType=query&userId=" + userId;
         OKHttp.getInstance()
                 .get(url, new RequestCallback() {
                     @Override
@@ -162,7 +162,7 @@ public class EditUserInfoDelegate extends BaseDelegate implements View.OnClickLi
 
                 String id = userInfoBean.getId();
                 final String url = UrlConfig.USERINFO +
-                        "?operateType=u" +
+                        "?operateType=update" +
                         "&id=" + id +
                         "&userId=" + userId +
                         "&userName=" + userName +

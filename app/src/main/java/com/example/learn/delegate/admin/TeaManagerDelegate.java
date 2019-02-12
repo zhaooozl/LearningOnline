@@ -66,7 +66,7 @@ public class TeaManagerDelegate extends BaseDelegate implements SwipeRefreshLayo
     }
 
     private void getStudentInfo(String userType) {
-        final String url = UrlConfig.USERINFO + "?operateType=q&userType=" + userType;
+        final String url = UrlConfig.USERINFO + "?operateType=query&userType=" + userType;
         OKHttp.getInstance()
                 .get(url, new RequestCallback() {
                     @Override
@@ -131,7 +131,7 @@ public class TeaManagerDelegate extends BaseDelegate implements SwipeRefreshLayo
 
     private void deleteUser(String userId) {
         mLoadingDialog.show();
-        final String url = UrlConfig.USERINFO + "?operateType=d&userId=" + userId;
+        final String url = UrlConfig.USERINFO + "?operateType=delete&userId=" + userId;
         OKHttp.getInstance()
                 .get(url, new RequestCallback() {
                     @Override
