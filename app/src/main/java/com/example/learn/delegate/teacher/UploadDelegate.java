@@ -75,29 +75,15 @@ public class UploadDelegate extends BaseDelegate implements View.OnClickListener
 
             case R.id.btn_submit_course:
 //                /storage/emulated/0
-                String path2 = "/storage/emulated/0/update.zip";
+                String subjectName = etSubjName.getText().toString().trim();
+                String subjectDesc = etSubjDesc.getText().toString().trim();
+
+
+                String path2 = "/storage/emulated/0/common.lua";
                 OKHttpUtils okHttpUtils = new OKHttpUtils();
                 okHttpUtils.setProgressListener(this);
                 okHttpUtils.upLoad(path2, "update.zip");
                 showProgressDialog();
-//                String url = "http://192.168.2.1:8080/LearningOnline/upload";
-//                new OKHttp()
-//                        .post(url, "", new RequestCallback() {
-//                            @Override
-//                            public void onSuccess(String responseBody) {
-//
-//                            }
-//
-//                            @Override
-//                            public void onError(int code, String msg) {
-//
-//                            }
-//
-//                            @Override
-//                            public void onFail(Call call, IOException e) {
-//
-//                            }
-//                        });
                 break;
             default:
                 break;

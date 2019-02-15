@@ -29,7 +29,6 @@ public class UrlConfig {
 
 
 
-
     public static final String STUDENT_INFO = LOCAL_HOST + "/student";
     public static final String EXAM_INFO = LOCAL_HOST + "/exam";
     public static final String CHANGEPASSWD = HOST + "/changepasswd";
