@@ -89,7 +89,7 @@ public class LearnDelegate extends BaseDelegate implements View.OnClickListener,
 
     // 获取课程数据
     private void getCoursesData(final int index, int userId) {
-        final String url = UrlConfig.SUBJECT + "?userId=" + userId;
+        final String url = UrlConfig.SUBJECT + "?operateType=query&userId=" + userId;
         new ExOKHttp.Builder()
                 .url(url)
                 .success(new ISuccess() {
@@ -102,7 +102,6 @@ public class LearnDelegate extends BaseDelegate implements View.OnClickListener,
                         RecyclerView contentRV = child.findViewById(R.id.rv_content);
                         contentRV.setAdapter(new ContentAdapter(LearnDelegate.this, courseBeans));
                         contentRV.addItemDecoration(new DividerItemDecoration(getContext(), OrientationHelper.VERTICAL));
-
                         mRefreshLayout.setRefreshing(false);
                     }
                 })

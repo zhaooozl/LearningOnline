@@ -6,9 +6,11 @@ import android.view.View;
 import com.example.learn.activity.MainActivity;
 import com.example.learn.config.ConfigType;
 import com.example.learn.config.Configurator;
+import com.example.learn.config.UrlConfig;
 import com.example.learn.delegate.base.BaseDelegate;
 import com.example.learn.delegate.student.ExamDelegate;
 import com.example.learn.delegate.teacher.ExamPaperDelegate;
+import com.example.learn.learningonline.R;
 import com.example.learn.net.download.OKHttpUtils;
 import com.example.learn.net.download.ProgressListener;
 import com.orhanobut.logger.Logger;
@@ -37,15 +39,16 @@ public class ContentItemOnClickListener implements View.OnClickListener, Progres
 
     @Override
     public void onClick(View view) {
-        ClickType tag = (ClickType) view.getTag();
-        switch (tag) {
-            case DOWN_LOAD:
+        switch (view.getId()) {
+            case R.id.iv_download:
                 Logger.d("download: +++++++++++++++++++");
+                String fileName = (String) view.getTag();
+                final String url = UrlConfig.SUBJECT + "?operateType=download&fileName=" + fileName;
                 new OKHttpUtils()
                         .setProgressListener(this)
-                        .downLoad(url2);
+                        .downLoad(url);
                 break;
-            case TAKE_EXAM:
+            case R.id.iv_exam:
                 MainActivity ac = (MainActivity) delegate.getActivity();
                 Bundle bundle = new Bundle();
                 bundle.putInt("subjectId", subjectId);
@@ -74,6 +77,7 @@ public class ContentItemOnClickListener implements View.OnClickListener, Progres
 
     @Override
     public void onProgress(int mProgress, long contentSize) {
+        Logger.d("onProgress: " + mProgress);
         holder.pbProgress.setProgress(mProgress);
     }
 

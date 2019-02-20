@@ -67,20 +67,11 @@ public class OKHttpUtils {
                 });
     }
 
-    public void upLoad(String path, String fileName) {
-//        OkHttpClient client = new OkHttpClient.Builder()
-//                .connectTimeout(CONNECT_TIMEOUT, TimeUnit.MILLISECONDS)
-//                .readTimeout(READ_TIMEOUT, TimeUnit.MILLISECONDS)
-//                .addNetworkInterceptor(getLogInterceptor())
-//                .addNetworkInterceptor(new InterNetInterceptor(progressListener))
-//                .build();
-
-        String type = "application/octet-stream";
-        String type2 = "multipart/form-data";
-
+    public void upLoad(String url, String path, String fileName) {
+        Logger.d("upload url: " + url);
         File file = new File(path);
         Logger.d("upLoad file is exists: " + file.exists());
-
+        final String type = "application/octet-stream";
         RequestBody requestBody = RequestBody.create(MediaType.parse(type), file);
 
         ProgressRequestBody progressRequestBody = new ProgressRequestBody(requestBody, file, progressListener);
@@ -91,7 +82,7 @@ public class OKHttpUtils {
                 .build();
 
         Request request = new Request.Builder()
-                .url("http://192.168.2.1:8080/LearningOnline/upload")
+                .url(url)
                 .post(multiBody)
                 .build();
 

@@ -74,7 +74,7 @@ public class SubjectDelegate extends BaseDelegate implements View.OnClickListene
     // 获取课程数据
     private void getCoursesData(String userId) {
         mRefreshLayout.setRefreshing(true);
-        final String url = UrlConfig.SUBJECT + "?userId=" + userId;
+        final String url = UrlConfig.SUBJECT + "?operateType=query&userId=" + userId;
 
         OKHttp.getInstance()
                 .get(url, new RequestCallback() {

@@ -14,7 +14,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
+import com.example.learn.config.ConfigType;
+import com.example.learn.config.Configurator;
+import com.example.learn.config.UrlConfig;
 import com.example.learn.delegate.base.BaseDelegate;
 import com.example.learn.learningonline.R;
 import com.example.learn.net.download.OKHttpUtils;
@@ -75,14 +79,19 @@ public class UploadDelegate extends BaseDelegate implements View.OnClickListener
 
             case R.id.btn_submit_course:
 //                /storage/emulated/0
+                final String userId = Configurator.getInstance().get(ConfigType.USERID).toString().trim();
                 String subjectName = etSubjName.getText().toString().trim();
                 String subjectDesc = etSubjDesc.getText().toString().trim();
-
-
+                if ("".equals(subjectName)) {
+                    Toast.makeText(getActivity(), "科目名称不能为空", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 String path2 = "/storage/emulated/0/common.lua";
                 OKHttpUtils okHttpUtils = new OKHttpUtils();
                 okHttpUtils.setProgressListener(this);
-                okHttpUtils.upLoad(path2, "update.zip");
+                final String url = UrlConfig.SUBJECT + "?operateType=upload&userId=" + userId + "&subjectName=" + subjectName + "&subjectDesc=" + subjectDesc;
+                final String url2 = UrlConfig.UPLOAD + "?operateType=upload&userId=" + userId + "&subjectName=" + subjectName + "&subjectDesc=" + subjectDesc;
+                okHttpUtils.upLoad(url2, path2, "common.lua");
                 showProgressDialog();
                 break;
             default:

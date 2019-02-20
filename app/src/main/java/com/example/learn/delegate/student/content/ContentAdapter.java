@@ -42,8 +42,9 @@ public class ContentAdapter extends RecyclerView.Adapter<ContentHolder> {
         CourseBean bean = mDatas.get(position);
         Logger.d("onBindViewHolder: " + bean.toString());
         holder.courseName.setText(bean.getName());
-        holder.ivExam.setTag(ClickType.TAKE_EXAM);
-        holder.ivDownLoad.setTag(ClickType.DOWN_LOAD);
+//        holder.ivExam.setTag(ClickType.TAKE_EXAM);
+//        holder.ivDownLoad.setTag(ClickType.DOWN_LOAD);
+        holder.ivDownLoad.setTag(bean.getCourseware());
         holder.ivExam.setOnClickListener(new ContentItemOnClickListener(mDatas.get(position).getSubjectId(), delegate));
         holder.ivDownLoad.setOnClickListener(new ContentItemOnClickListener(holder));
     }
