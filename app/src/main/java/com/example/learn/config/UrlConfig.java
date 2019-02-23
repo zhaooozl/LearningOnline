@@ -1,8 +1,8 @@
 package com.example.learn.config;
 
 public class UrlConfig {
-
-    public static final String HOST = "http://192.168.43.125:8080/LearningOnline";
+    public static final String HOST = "http://192.168.1.111:8080/LearningOnline";
+//    public static final String HOST = "http://192.168.43.125:8080/LearningOnline";
 //    public static final String HOST = "http://192.168.2.1:8080/LearningOnline";
 
     public static final String LOCAL_HOST = "http://127.0.0.1:8080/LearningOnline";
