@@ -20,6 +20,12 @@
             android:src="@mipmap/add"
             />
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/colorHight" />
+
     </RelativeLayout>
 
     <android.support.v4.widget.SwipeRefreshLayout

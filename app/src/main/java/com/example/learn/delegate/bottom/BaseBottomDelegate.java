@@ -143,7 +143,7 @@ public class BaseBottomDelegate extends BaseDelegate implements View.OnClickList
                 } else if (index == 2) {
                     delegate = new CourManagerDelegate();
                 } else if (index == 3) {
-                    delegate = new ExamManagerDelegate();
+                    delegate = new SubjectDelegate();
                 } else if (index == 4) {
                     delegate = new MyDelegate();
                 }

@@ -74,13 +74,9 @@ public class LearnDelegate extends BaseDelegate implements View.OnClickListener,
                         teacherBeans = learnBean.getData();
                         channelAdapter = new ChannelAdapter(LearnDelegate.this, teacherBeans);
                         mChannelRV.setAdapter(channelAdapter);
-
                         ExPagerAdapter pagerAdapter = new ExPagerAdapter(teacherBeans.size());
                         mPager.setAdapter(pagerAdapter);
-
                         getCoursesData(0, teacherBeans.get(0).getUserId());
-
-
                     }
                 })
                 .build()

@@ -15,6 +15,7 @@ import com.example.learn.config.ConfigType;
 import com.example.learn.config.Configurator;
 import com.example.learn.config.UrlConfig;
 import com.example.learn.delegate.base.BaseDelegate;
+import com.example.learn.delegate.bottom.UserType;
 import com.example.learn.delegate.student.LearnDelegate;
 import com.example.learn.delegate.student.content.ContentAdapter;
 import com.example.learn.entiry.CourseBean;
@@ -43,6 +44,7 @@ public class SubjectDelegate extends BaseDelegate implements View.OnClickListene
     SwipeRefreshLayout mRefreshLayout;
 
     private String mUserId = Configurator.getInstance().get(ConfigType.USERID);
+    private int mUserType = Configurator.getInstance().get(ConfigType.USER_TYPE);
 
     @Override
     public Object getLayout() {
@@ -74,7 +76,12 @@ public class SubjectDelegate extends BaseDelegate implements View.OnClickListene
     // 获取课程数据
     private void getCoursesData(String userId) {
         mRefreshLayout.setRefreshing(true);
-        final String url = UrlConfig.SUBJECT + "?operateType=query&userId=" + userId;
+        String url = null;
+        if (mUserType == UserType.ADMIN) {
+            url = UrlConfig.SUBJECT + "?operateType=query";
+        } else {
+            url = UrlConfig.SUBJECT + "?operateType=query&userId=" + userId;
+        }
 
         OKHttp.getInstance()
                 .get(url, new RequestCallback() {

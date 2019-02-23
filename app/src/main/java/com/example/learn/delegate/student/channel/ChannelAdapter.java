@@ -42,7 +42,7 @@ public class ChannelAdapter extends RecyclerView.Adapter<ChannelHolder> {
     public void onBindViewHolder(@NonNull ChannelHolder holder, int position) {
         holder.mChannelNameTV.setText(mDatas.get(position).getUserName());
         if (channelCurIndex == position) {
-            holder.mChannelNameTV.setTextColor(mContext.getResources().getColor(R.color.colorTheme));
+            holder.mChannelNameTV.setTextColor(mContext.getResources().getColor(R.color.colorHight));
         } else {
             holder.mChannelNameTV.setTextColor(mContext.getResources().getColor(R.color.colorNormal));
         }

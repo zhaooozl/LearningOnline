@@ -14,6 +14,7 @@ import com.example.learn.config.ConfigType;
 import com.example.learn.config.Configurator;
 import com.example.learn.config.UrlConfig;
 import com.example.learn.delegate.base.BaseDelegate;
+import com.example.learn.delegate.bottom.UserType;
 import com.example.learn.delegate.student.ExamDelegate;
 import com.example.learn.delegate.teacher.ExamPaperDelegate;
 import com.example.learn.entiry.common.CommonStatusBean;
@@ -75,13 +76,13 @@ public class ContentItemOnClickListener implements View.OnClickListener, Progres
                 Bundle bundle = new Bundle();
                 bundle.putInt("subjectId", subjectId);
                 int userType = Configurator.getInstance().get(ConfigType.USER_TYPE);
-                if (userType == 2) {
+                if (userType == UserType.STUDENT) {
                     if (delegate != null) {
                         ExamDelegate examDelegate = new ExamDelegate();
                         examDelegate.setArguments(bundle);
                         ac.start(examDelegate);
                     }
-                } else if (userType == 1) {
+                } else if (userType == UserType.TEACHER || userType == UserType.ADMIN) {
                     if (delegate != null) {
                         ExamPaperDelegate examPaperDelegate = new ExamPaperDelegate();
                         examPaperDelegate.setArguments(bundle);
