@@ -5,6 +5,7 @@ import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.OrientationHelper;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -40,6 +41,10 @@ public class ExamPaperDelegate extends BaseDelegate implements View.OnClickListe
     TextView tvAddfill;
     @BindView(R.id.rv_exampaper)
     RecyclerView mRecyclerView;
+    @BindView(R.id.iv_back)
+    ImageView iv_back;
+    @BindView(R.id.iv_add)
+    ImageView iv_add;
 
     private QuestionDialog mQuestionDialog;
 
@@ -62,7 +67,8 @@ public class ExamPaperDelegate extends BaseDelegate implements View.OnClickListe
     public void onBindView(Bundle savedInstanceState, View view) {
         Bundle arguments = getArguments();
         subjectId = arguments.getInt("subjectId");
-
+        iv_back.setOnClickListener(this);
+        iv_add.setOnClickListener(this);
 
         tvAddSelect.setOnClickListener(this);
         tvAddJudge.setOnClickListener(this);
@@ -110,6 +116,12 @@ public class ExamPaperDelegate extends BaseDelegate implements View.OnClickListe
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+            case R.id.iv_back:
+
+                break;
+            case R.id.iv_add:
+
+                break;
             case R.id.tv_add_select:
                 questionType = 3;
                 mQuestionDialog.setQuestionType(questionType);

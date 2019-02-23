@@ -5,7 +5,40 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/colorBg">
 
-    <include layout="@layout/module_toolbar1" />
+    <RelativeLayout
+        android:id="@+id/tl_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@android:color/white">
+
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_width="40dp"
+            android:layout_height="20dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="5dp"
+            android:src="@mipmap/return_black"
+            android:textColor="@color/colorFont"
+            android:textSize="20sp"
+            android:scaleType="fitCenter"
+            />
+
+        <android.support.v7.widget.AppCompatImageView
+            android:id="@+id/iv_add"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="20dp"
+            android:src="@mipmap/add" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/colorHight" />
+
+    </RelativeLayout>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_exampaper"
@@ -13,9 +46,8 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         app:layoutManager="android.support.v7.widget.LinearLayoutManager"
-
+        android:layout_below="@id/tl_toolbar"
         />
-
 
     <LinearLayout
         android:layout_width="match_parent"
