@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -25,35 +26,51 @@ import okhttp3.Call;
  * 注册
  */
 public class RegisterActivity extends BaseActivity implements View.OnClickListener {
-
+    // 用户id
     @BindView(R.id.et_userid)
     EditText etUserid;
+    // 昵称
     @BindView(R.id.et_username)
     EditText etUserName;
+    // 密码
     @BindView(R.id.et_passwd)
     EditText etPasswd;
+    // 再输入一次密码
     @BindView(R.id.et_repasswd)
     EditText etRepasswd;
+    // 出生年月
     @BindView(R.id.et_birth)
     EditText etBirth;
+    // 学院
     @BindView(R.id.et_college)
     EditText etCollege;
+    // 邮箱
     @BindView(R.id.et_email)
     EditText etEmail;
+    // 性别
     @BindView(R.id.rg_gender)
     RadioGroup rgGender;
+    // 男生button
     @BindView(R.id.rb_boy)
     RadioButton rbBoy;
+    // 女生button
     @BindView(R.id.rb_girl)
     RadioButton rbGirl;
+    // 用户类别
     @BindView(R.id.rg_user_type)
     RadioGroup rgUserType;
+    // 学生button
     @BindView(R.id.rb_student)
     RadioButton rbStudent;
+    // 教师button
     @BindView(R.id.rb_teacher)
     RadioButton rbTeacher;
+    // 注册button
     @BindView(R.id.btn_register)
     Button btnRegister;
+    // 返回button
+    @BindView(R.id.iv_back)
+    ImageView iv_back;
 
     @Override
     public int getLayout() {
@@ -62,17 +79,22 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
 
     @Override
     public void onBindView(Bundle savedInstanceState) {
+        // 设置注册button点击响应事件
         btnRegister.setOnClickListener(this);
+        // 返回button监听
+        iv_back.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
         int id = v.getId();
         switch (id) {
-            case R.id.btn_register:
-
-
+            case R.id.btn_register: //注册点击，执行注册请求
                 register();
+                break;
+
+            case R.id.iv_back: //返回
+                finish();
                 break;
             default:
                 break;
@@ -81,13 +103,13 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
 
 
     private void register() {
-        String userId = etUserid.getText().toString().trim();
-        String userName = etUserName.getText().toString().trim();
-        String passwd = etPasswd.getText().toString().trim();
-        String rePasswd = etRepasswd.getText().toString().trim();
-        String college = etCollege.getText().toString().trim();
-        String email = etEmail.getText().toString().trim();
-        String birth = etBirth.getText().toString().trim();
+        final String userId = etUserid.getText().toString().trim();
+        final String userName = etUserName.getText().toString().trim();
+        final String passwd = etPasswd.getText().toString().trim();
+        final String rePasswd = etRepasswd.getText().toString().trim();
+        final String college = etCollege.getText().toString().trim();
+        final String email = etEmail.getText().toString().trim();
+        final String birth = etBirth.getText().toString().trim();
 
         int userType = -1;
         switch (rgUserType.getCheckedRadioButtonId()) {

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/white"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="10dp"
+        >
+
+        <com.joanzapata.iconify.widget.IconTextView
+            android:id="@+id/iv_avatar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="{fa-user}"
+            android:textColor="@color/colorNormal"
+            android:gravity="center"
+            android:textSize="14sp"
+            />
+
+        <TextView
+            android:id="@+id/tv_username"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorNormal"
+            android:textSize="14sp"
+            android:layout_marginLeft="5dp"
+            />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_comment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorFont"
+        android:textSize="16sp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginBottom="10dp"
+        />
+
+    <TextView
+        android:id="@+id/tv_timestamp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="12sp"
+        android:textColor="@color/colorNormal"
+        android:layout_marginLeft="25dp"
+        android:layout_marginBottom="5dp"
+        />
+
+</LinearLayout>

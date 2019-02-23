@@ -11,7 +11,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="160dp"
-            android:background="@color/colorTheme">
+            android:background="@color/colorHight">
 
             <ImageView
                 android:id="@+id/iv_profile_pic"
@@ -37,7 +37,7 @@
         <TextView
             android:id="@+id/tv_student_id"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="55dp"
             android:text="学号: 2016211365"
             android:textColor="@color/colorFont"
             android:background="@color/colorItemBg"
@@ -50,7 +50,7 @@
         <TextView
             android:id="@+id/tv_gender"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="55dp"
             android:text="性别: 女"
             android:textColor="@color/colorFont"
             android:background="@color/colorItemBg"
@@ -63,7 +63,7 @@
         <TextView
             android:id="@+id/tv_birth"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="55dp"
             android:text="出生年月: 1997年12月"
             android:textColor="@color/colorFont"
             android:background="@color/colorItemBg"
@@ -76,7 +76,7 @@
         <TextView
             android:id="@+id/tv_collage"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="55dp"
             android:text="学院：计算机与信息工程"
             android:textColor="@color/colorFont"
             android:background="@color/colorItemBg"
@@ -89,7 +89,7 @@
         <TextView
             android:id="@+id/tv_major"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="55dp"
             android:text="专业：计算机科学与技术"
             android:textColor="@color/colorFont"
             android:background="@color/colorItemBg"
@@ -103,7 +103,7 @@
         <TextView
             android:id="@+id/btn_changepwd"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="55dp"
             android:text="修改密码"
             android:textColor="#E2434F"
             android:background="@color/colorItemBg"
@@ -115,7 +115,7 @@
         <TextView
             android:id="@+id/btn_logout"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="55dp"
             android:text="退出登录"
             android:textColor="#E2434F"
             android:background="@color/colorItemBg"

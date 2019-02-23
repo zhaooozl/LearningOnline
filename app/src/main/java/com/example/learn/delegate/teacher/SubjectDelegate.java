@@ -85,9 +85,7 @@ public class SubjectDelegate extends BaseDelegate implements View.OnClickListene
                         List<CourseBean> courseBeans = courseResponseBean.getData();
                         mRecyclerView.setAdapter(new ContentAdapter(SubjectDelegate.this, courseBeans));
                         mRecyclerView.addItemDecoration(new DividerItemDecoration(getContext(), OrientationHelper.VERTICAL));
-
                         mRefreshLayout.setRefreshing(false);
-
                     }
 
                     @Override

@@ -3,15 +3,50 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/rl_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@android:color/white">
+
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_width="40dp"
+            android:layout_height="20dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="5dp"
+            android:src="@mipmap/return_black"
+            android:textColor="@color/colorFont"
+            android:textSize="20sp"
+            android:scaleType="fitCenter"
+            />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:textColor="@color/colorHight"
+            android:text="注册"
+            android:layout_centerInParent="true"
+            />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/colorHight" />
+    </RelativeLayout>
+
     <EditText
         android:id="@+id/et_userid"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="20dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:hint="学号（工号）"
         android:inputType="number"
+        android:layout_below="@id/rl_toolbar"
         />
 
     <EditText
@@ -134,7 +169,7 @@
         android:textSize="22sp"
         android:layout_marginTop="20dp"
         android:layout_below="@id/rg_user_type"
-        android:background="@color/colorPrimary"
+        android:background="@color/colorHight"
         />
 
 

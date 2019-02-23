@@ -29,7 +29,8 @@ public class UrlConfig {
     public static final String QUESTION = HOST + "/question";
     // 上传
     public static final String UPLOAD = HOST + "/upload";
-
+    // 评论
+    public static final String COMMENT = HOST + "/comment";
 
 
     public static final String STUDENT_INFO = LOCAL_HOST + "/student";

@@ -32,14 +32,19 @@ import okhttp3.Call;
  * 登录
  */
 public class LoginActivity extends BaseActivity implements View.OnClickListener {
-    @BindView(R.id.et_username)
-    AppCompatEditText etUserName;
+    // 用户id
+    @BindView(R.id.et_userid)
+    AppCompatEditText etUserId;
+    // 密码
     @BindView(R.id.et_passwd)
     AppCompatEditText etPasswd;
+    // 登录button
     @BindView(R.id.btn_login)
     AppCompatButton btnLogin;
+    // 修改密码button
     @BindView(R.id.btn_go_changpwd)
     AppCompatButton goChangePwd;
+    // 注册button
     @BindView(R.id.btn_go_register)
     AppCompatButton goRegister;
 
@@ -50,39 +55,42 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
 
     @Override
     public void onBindView(Bundle savedInstanceState) {
+        // 登录button点击监听
         btnLogin.setOnClickListener(this);
+        // 修改密码button点击监听
         goChangePwd.setOnClickListener(this);
+        // 注册button点击监听
         goRegister.setOnClickListener(this);
-
-
-
     }
 
     @Override
     public void onClick(View v) {
         int id = v.getId();
         switch (id) {
-            case R.id.btn_login:
+            case R.id.btn_login: // 请求登录
                 login();
                 break;
-            case R.id.btn_go_changpwd:
+            case R.id.btn_go_changpwd: // 跳转修改密码页面
                 Intent intent1 = new Intent(LoginActivity.this, ChangePwdActivity.class);
                 startActivity(intent1);
                 break;
-            case R.id.btn_go_register:
+            case R.id.btn_go_register: // 跳转注册页面
                 Intent intent2 = new Intent(LoginActivity.this, RegisterActivity.class);
                 startActivity(intent2);
                 break;
-
             default:
                 break;
         }
     }
 
+    /**
+     * 登录请求
+     */
     private void login() {
+        // 显示loading
         final LoadingDialog loadingDialog = new LoadingDialog(this);
         loadingDialog.show();
-        final String userId = etUserName.getText().toString().trim();
+        final String userId = etUserId.getText().toString().trim();
         final String passwd = etPasswd.getText().toString().trim();
 
         String url = UrlConfig.LOGIN + "?userId=" + userId + "&passwd=" + passwd;

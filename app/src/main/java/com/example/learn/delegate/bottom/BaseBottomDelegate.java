@@ -16,6 +16,7 @@ import com.example.learn.delegate.admin.TeaManagerDelegate;
 import com.example.learn.delegate.student.LearnDelegate;
 import com.example.learn.delegate.base.BaseDelegate;
 import com.example.learn.delegate.common.MyDelegate;
+import com.example.learn.delegate.teacher.CommentDelegate;
 import com.example.learn.delegate.teacher.SubjectDelegate;
 import com.example.learn.entiry.BottomMenuBean;
 import com.example.learn.learningonline.R;
@@ -53,7 +54,7 @@ public class BaseBottomDelegate extends BaseDelegate implements View.OnClickList
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         int normal = getResources().getColor(R.color.colorNormal);
-        int theme = getResources().getColor(R.color.colorTheme);
+        int theme = getResources().getColor(R.color.colorHight);
         userType = Configurator.getInstance().get(ConfigType.USER_TYPE);
         if (userType == UserType.ADMIN) {
             BottomMenuBean bean1 = new BottomMenuBean(0, "{fa-graduation-cap}", "学生管理", normal, theme);
@@ -68,8 +69,10 @@ public class BaseBottomDelegate extends BaseDelegate implements View.OnClickList
             menuBeans.add(bean5);
         } else if (userType == UserType.TEACHER) {
             BottomMenuBean learnBean = new BottomMenuBean(0, "{fa-graduation-cap}", "科目", normal, theme);
-            BottomMenuBean myBean = new BottomMenuBean(1, "{fa-user}", "我的", normal, theme);
+            BottomMenuBean commentBean = new BottomMenuBean(1, "{fa-user}", "评论", normal, theme);
+            BottomMenuBean myBean = new BottomMenuBean(2, "{fa-user}", "我的", normal, theme);
             menuBeans.add(learnBean);
+            menuBeans.add(commentBean);
             menuBeans.add(myBean);
         } else if (userType == UserType.STUDENT) {
             BottomMenuBean learnBean = new BottomMenuBean(0, "{fa-graduation-cap}", "学习", normal, theme);
@@ -148,8 +151,9 @@ public class BaseBottomDelegate extends BaseDelegate implements View.OnClickList
                 if (index == 0) {
                     delegate = new SubjectDelegate();
                 } else if (index == 1) {
-                    delegate = new MyDelegate();
+                    delegate = new CommentDelegate();
                 } else if (index == 2) {
+                    delegate = new MyDelegate();
 
                 }
             } else if (userType == UserType.STUDENT) {

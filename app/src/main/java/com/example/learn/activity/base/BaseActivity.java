@@ -17,6 +17,7 @@ import com.example.learn.delegate.base.BaseDelegate;
 import com.example.learn.learningonline.R;
 import com.orhanobut.logger.Logger;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.ButterKnife;
@@ -34,11 +35,14 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     public abstract void onBindView(Bundle savedInstanceState);
 
+    public static final List<AppCompatActivity> mActivitys = new ArrayList<>();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(getLayout());
+        mActivitys.add(this);
+
         mBind = ButterKnife.bind(this);
 
         registerPermission();
@@ -50,6 +54,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        mActivitys.remove(this);
         if (mBind != null) {
             mBind.unbind();
         }
@@ -78,6 +83,10 @@ public abstract class BaseActivity extends AppCompatActivity {
     public void onBackPressed() {
 //        super.onBackPressed();
         Logger.i(TAG + " onBackPressed");
+        if (mActivitys.size() > 1) {
+            mActivitys.get(mActivitys.size() - 1).finish();
+            return;
+        }
         FragmentManager fragmentManager = getSupportFragmentManager();
         final boolean isStateSaved = fragmentManager.isStateSaved();
         Logger.d("isStateSaved: " + isStateSaved);
@@ -100,6 +109,7 @@ public abstract class BaseActivity extends AppCompatActivity {
             } else {
                 Logger.d("finish: " + ctm);
                 super.onBackPressed();
+
                 System.exit(0);
             }
         }

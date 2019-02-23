@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.AppCompatEditText;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
@@ -38,6 +39,9 @@ public class ChangePwdActivity extends BaseActivity implements View.OnClickListe
     // 确认
     @BindView(R.id.btn_confirm)
     AppCompatButton btnConfirm;
+    // 返回button
+    @BindView(R.id.iv_back)
+    ImageView iv_back;
 
     @Override
     public int getLayout() {
@@ -46,7 +50,10 @@ public class ChangePwdActivity extends BaseActivity implements View.OnClickListe
 
     @Override
     public void onBindView(Bundle savedInstanceState) {
+        // 确认button点击监听事件
         btnConfirm.setOnClickListener(this);
+        // 返回button监听
+        iv_back.setOnClickListener(this);
     }
 
     @Override
@@ -55,6 +62,9 @@ public class ChangePwdActivity extends BaseActivity implements View.OnClickListe
         switch (id) {
             case R.id.btn_confirm:
                 changePasswd();
+                break;
+            case R.id.iv_back: //返回
+                finish();
                 break;
             default:
                 break;

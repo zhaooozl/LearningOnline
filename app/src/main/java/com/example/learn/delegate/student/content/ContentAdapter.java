@@ -47,6 +47,7 @@ public class ContentAdapter extends RecyclerView.Adapter<ContentHolder> {
         holder.ivDownLoad.setTag(bean.getCourseware());
         holder.ivExam.setOnClickListener(new ContentItemOnClickListener(mDatas.get(position).getSubjectId(), delegate));
         holder.ivDownLoad.setOnClickListener(new ContentItemOnClickListener(holder));
+        holder.ivComment.setOnClickListener(new ContentItemOnClickListener(bean.getUserId(), delegate));
     }
 
     @Override
