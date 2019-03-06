@@ -14,6 +14,8 @@ import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.TypeReference;
+import com.example.learn.config.ConfigType;
+import com.example.learn.config.Configurator;
 import com.example.learn.config.UrlConfig;
 import com.example.learn.delegate.base.BaseDelegate;
 import com.example.learn.delegate.teacher.adapter.ExamAdapter2;
@@ -79,7 +81,8 @@ public class ExamPaperDelegate extends BaseDelegate implements View.OnClickListe
     }
 
     private void getExamPaper(int subjectId) {
-        String url = UrlConfig.EXAM + "?subjectId=" + subjectId;
+        final int userType = Configurator.getInstance().get(ConfigType.USER_TYPE);
+        String url = UrlConfig.EXAM + "?userType=" + userType + "" + "&subjectId=" + subjectId;
         OKHttp.getInstance()
                 .get(url, new RequestCallback() {
                     @Override
@@ -112,7 +115,7 @@ public class ExamPaperDelegate extends BaseDelegate implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.iv_back:
-
+                pop();
                 break;
             case R.id.iv_add:
                 PopupMenu popupMenu = new PopupMenu(getActivity(), v);

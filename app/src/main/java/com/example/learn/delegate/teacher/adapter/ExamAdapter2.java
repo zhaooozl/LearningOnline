@@ -55,7 +55,7 @@ public class ExamAdapter2 extends RecyclerView.Adapter<ExamHolder2> {
             view = LayoutInflater.from(mContext).inflate(R.layout.item_fill_blank_exam2, parent, false);
 //            view.setTag(ExamItemType.FILL_BLANK);
         } else if (viewType == ExamItemType.SUBMIT) {
-            view = LayoutInflater.from(mContext).inflate(R.layout.item_submit_exam, parent, false);
+//            view = LayoutInflater.from(mContext).inflate(R.layout.item_submit_exam, parent, false);
 //            view.setTag(ExamItemType.SUBMIT);
         }
         return new ExamHolder2(view, viewType);
@@ -119,7 +119,7 @@ public class ExamAdapter2 extends RecyclerView.Adapter<ExamHolder2> {
         } else if (viewType == ExamItemType.SUBMIT) {
             Logger.d("viewType SUBMIT");
 
-            holder.submitBtn.setOnClickListener((ExamPaperDelegate) delegate);
+//            holder.submitBtn.setOnClickListener((ExamPaperDelegate) delegate);
         }
 
     }
