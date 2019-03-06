@@ -4,8 +4,11 @@ import android.os.Bundle;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.OrientationHelper;
 import android.support.v7.widget.RecyclerView;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,27 +34,23 @@ import java.util.List;
 import butterknife.BindView;
 import okhttp3.Call;
 
-public class ExamPaperDelegate extends BaseDelegate implements View.OnClickListener {
-
-    @BindView(R.id.tv_add_select)
-    TextView tvAddSelect;
-    @BindView(R.id.tv_add_judge)
-    TextView tvAddJudge;
-    @BindView(R.id.tv_add_fill)
-    TextView tvAddfill;
+public class ExamPaperDelegate extends BaseDelegate implements View.OnClickListener, PopupMenu.OnMenuItemClickListener {
+    // 列表控件
     @BindView(R.id.rv_exampaper)
     RecyclerView mRecyclerView;
+    // 返回button
     @BindView(R.id.iv_back)
     ImageView iv_back;
+    // 添加button
     @BindView(R.id.iv_add)
     ImageView iv_add;
-
+    // 添加问题的dialog
     private QuestionDialog mQuestionDialog;
-
+    // loading
     private LoadingDialog mLoadingDialog;
-
+    // 试题数据的适配器
     private ExamAdapter2 examAdapter2;
-
+    // 数据bean
     private List<LayoutBean> mLayoutBeans;
 
     private int questionType;
@@ -70,9 +69,6 @@ public class ExamPaperDelegate extends BaseDelegate implements View.OnClickListe
         iv_back.setOnClickListener(this);
         iv_add.setOnClickListener(this);
 
-        tvAddSelect.setOnClickListener(this);
-        tvAddJudge.setOnClickListener(this);
-        tvAddfill.setOnClickListener(this);
         mLoadingDialog = new LoadingDialog(getActivity());
         mQuestionDialog = new QuestionDialog(getActivity());
         mQuestionDialog.setOnClickListener(this);
@@ -89,8 +85,7 @@ public class ExamPaperDelegate extends BaseDelegate implements View.OnClickListe
                     @Override
                     public void onSuccess(String responseBody) {
                         Logger.json(responseBody);
-                        RespListBean<LayoutBean> baseBean = JSON.parseObject(responseBody, new TypeReference<RespListBean<LayoutBean>>() {
-                        });
+                        RespListBean<LayoutBean> baseBean = JSON.parseObject(responseBody, new TypeReference<RespListBean<LayoutBean>>() {});
                         mLayoutBeans = baseBean.getData();
 //                        Logger.d("getExamData layoutBean: " + mLayoutBeans.toString());
                         examAdapter2 = new ExamAdapter2(ExamPaperDelegate.this, mLayoutBeans);
@@ -120,27 +115,12 @@ public class ExamPaperDelegate extends BaseDelegate implements View.OnClickListe
 
                 break;
             case R.id.iv_add:
+                PopupMenu popupMenu = new PopupMenu(getActivity(), v);
+                MenuInflater menuInflater = popupMenu.getMenuInflater();
+                menuInflater.inflate(R.menu.menu_add_question, popupMenu.getMenu());
 
-                break;
-            case R.id.tv_add_select:
-                questionType = 3;
-                mQuestionDialog.setQuestionType(questionType);
-                mQuestionDialog.setmShowType(1);
-                mQuestionDialog.show();
-                break;
-            case R.id.tv_add_judge:
-                questionType = 4;
-                mQuestionDialog.setQuestionType(questionType);
-                mQuestionDialog.setmShowType(1);
-                mQuestionDialog.show();
-
-                break;
-            case R.id.tv_add_fill:
-                questionType = 5;
-                mQuestionDialog.setQuestionType(questionType);
-                mQuestionDialog.setmShowType(1);
-                mQuestionDialog.show();
-
+                popupMenu.setOnMenuItemClickListener(this);
+                popupMenu.show();
                 break;
             case R.id.btn_cancel:
                 mQuestionDialog.cancel();
@@ -149,7 +129,7 @@ public class ExamPaperDelegate extends BaseDelegate implements View.OnClickListe
                 int type = mQuestionDialog.getmShowType();
                 if (type == 1) {
                     addQuestion();
-                } else if (type == 2){
+                } else if (type == 2) {
                     updateQuestion(mQuestionId);
                 }
                 break;
@@ -258,8 +238,8 @@ public class ExamPaperDelegate extends BaseDelegate implements View.OnClickListe
 
         OKHttp.getInstance()
                 .get(url, new RequestCallback() {
-            @Override
-            public void onSuccess(String responseBody) {
+                    @Override
+                    public void onSuccess(String responseBody) {
 //                RespObjBean<CommonStatusBean> respObjBean = JSON.parseObject(responseBody, new TypeReference<RespObjBean<CommonStatusBean>>() {
 //                });
 //                CommonStatusBean statusBean = respObjBean.getData();
@@ -271,24 +251,52 @@ public class ExamPaperDelegate extends BaseDelegate implements View.OnClickListe
 //
 //                }
 //                Toast.makeText(getActivity(), msg, Toast.LENGTH_SHORT).show();
-                mLoadingDialog.cancel();
-                mQuestionDialog.cancel();
-            }
+                        mLoadingDialog.cancel();
+                        mQuestionDialog.cancel();
+                    }
 
-            @Override
-            public void onError(int code, String msg) {
-                mLoadingDialog.cancel();
+                    @Override
+                    public void onError(int code, String msg) {
+                        mLoadingDialog.cancel();
 
-            }
+                    }
 
-            @Override
-            public void onFail(Call call, IOException e) {
-                mLoadingDialog.cancel();
+                    @Override
+                    public void onFail(Call call, IOException e) {
+                        mLoadingDialog.cancel();
 
-            }
-        });
+                    }
+                });
+    }
 
 
+    @Override
+    public boolean onMenuItemClick(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menu_add_select:
+                questionType = 3;
+                mQuestionDialog.setQuestionType(questionType);
+                mQuestionDialog.setmShowType(1);
+                mQuestionDialog.show();
+                break;
+            case R.id.menu_add_judge:
+                questionType = 4;
+                mQuestionDialog.setQuestionType(questionType);
+                mQuestionDialog.setmShowType(1);
+                mQuestionDialog.show();
+                break;
+            case R.id.menu_add_fill:
+                questionType = 5;
+                mQuestionDialog.setQuestionType(questionType);
+                mQuestionDialog.setmShowType(1);
+                mQuestionDialog.show();
 
+                break;
+            default:
+
+                break;
+        }
+
+        return false;
     }
 }

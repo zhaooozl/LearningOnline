@@ -54,7 +54,7 @@ public class BaseBottomDelegate extends BaseDelegate implements View.OnClickList
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         int normal = getResources().getColor(R.color.colorNormal);
-        int theme = getResources().getColor(R.color.colorHight);
+        int theme = getResources().getColor(R.color.colorTheme);
         userType = Configurator.getInstance().get(ConfigType.USER_TYPE);
         if (userType == UserType.ADMIN) {
             BottomMenuBean bean1 = new BottomMenuBean(0, "{fa-graduation-cap}", "学生管理", normal, theme);
