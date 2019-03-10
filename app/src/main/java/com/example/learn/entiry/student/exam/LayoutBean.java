@@ -11,6 +11,10 @@ public class LayoutBean {
     private String questionId;
     private String title;
     private String question;
+    private String standardanswer;
+    private String answer;
+    private String myScore;
+    private int myTotalScore;
     private List<Option> options;
 
     public String getScore() {
@@ -75,6 +79,38 @@ public class LayoutBean {
 
     public void setQuestion(String question) {
         this.question = question;
+    }
+
+    public String getStandardanswer() {
+        return standardanswer;
+    }
+
+    public void setStandardanswer(String standardanswer) {
+        this.standardanswer = standardanswer;
+    }
+
+    public String getAnswer() {
+        return answer;
+    }
+
+    public void setAnswer(String answer) {
+        this.answer = answer;
+    }
+
+    public String getMyScore() {
+        return myScore;
+    }
+
+    public void setMyScore(String myScore) {
+        this.myScore = myScore;
+    }
+
+    public int getMyTotalScore() {
+        return myTotalScore;
+    }
+
+    public void setMyTotalScore(int myTotalScore) {
+        this.myTotalScore = myTotalScore;
     }
 
     public List<Option> getOptions() {

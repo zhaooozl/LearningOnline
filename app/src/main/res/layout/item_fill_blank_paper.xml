@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rl_item_fill_blank"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/white"
+    android:orientation="vertical"
+    >
+
+    <TextView
+        android:id="@+id/tv_question"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="1.___球没有的规则?"
+        android:layout_margin="10dp"
+        android:textSize="16sp"
+        android:textColor="@color/colorFont"/>
+
+    <include layout="@layout/module_paper_question" />
+
+
+</LinearLayout>

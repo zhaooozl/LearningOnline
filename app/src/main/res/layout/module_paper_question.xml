@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/tv_des1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="标准答案："
+        android:textSize="16sp"
+        android:textColor="@color/colorFont"
+        android:layout_below="@id/rg_options"
+        android:layout_marginLeft="10dp"
+        />
+
+    <TextView
+        android:id="@+id/tv_standardanswer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="A"
+        android:textSize="16sp"
+        android:textColor="@color/colorFont"
+        android:layout_toRightOf="@id/tv_des1"
+        android:layout_alignTop="@id/tv_des1"
+        />
+
+    <TextView
+        android:id="@+id/tv_des2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="我的答案："
+        android:textSize="16sp"
+        android:textColor="@color/colorFont"
+        android:layout_below="@id/tv_des1"
+        android:layout_marginLeft="10dp"
+        />
+
+    <TextView
+        android:id="@+id/tv_answer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="A"
+        android:textSize="16sp"
+        android:textColor="@color/colorFont"
+        android:layout_toRightOf="@id/tv_des2"
+        android:layout_alignTop="@id/tv_des2"
+        />
+
+    <TextView
+        android:id="@+id/tv_des3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="得分："
+        android:textSize="16sp"
+        android:textColor="@color/colorFont"
+        android:layout_below="@id/tv_des2"
+        android:layout_marginLeft="10dp"
+        />
+
+    <TextView
+        android:id="@+id/tv_myScore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="3"
+        android:textSize="16sp"
+        android:textColor="@color/colorFont"
+        android:layout_toRightOf="@id/tv_des3"
+        android:layout_alignTop="@id/tv_des3"
+        />
+
+</RelativeLayout>

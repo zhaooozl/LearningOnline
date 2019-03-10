@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RadioGroup;
 
 import com.alibaba.fastjson.JSON;
@@ -36,6 +37,7 @@ import java.util.List;
 import java.util.Map;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 import okhttp3.Call;
 
 public class ExamDelegate extends BaseDelegate implements OnClickListener,
@@ -43,6 +45,9 @@ public class ExamDelegate extends BaseDelegate implements OnClickListener,
 
     @BindView(R.id.rv_exam)
     RecyclerView mRecyclerView;
+
+    @BindView(R.id.iv_back)
+    ImageView iv_back;
 
     @Override
     public Object getLayout() {
@@ -61,6 +66,7 @@ public class ExamDelegate extends BaseDelegate implements OnClickListener,
 //        getExamData();
         Bundle arguments = getArguments();
         int subjectId = arguments.getInt("subjectId");
+        iv_back.setOnClickListener(this);
         getExamData(subjectId);
     }
 
@@ -101,31 +107,40 @@ public class ExamDelegate extends BaseDelegate implements OnClickListener,
 
     @Override
     public void onClick(View view) {
-        String submitData = JSON.toJSONString(submitBeans);
-        Logger.json(submitData);
+        switch (view.getId()) {
+            case R.id.iv_back:
+                pop();
+                break;
+            case R.id.btn_submit_exam:
+                String submitData = JSON.toJSONString(submitBeans);
+                Logger.json(submitData);
 
-        final LoadingDialog loadingDialog = new LoadingDialog(getActivity());
-        loadingDialog.show();
+                final LoadingDialog loadingDialog = new LoadingDialog(getActivity());
+                loadingDialog.show();
 
-        OKHttp.getInstance()
-                .post(UrlConfig.SUBMITPAPER, submitData, new RequestCallback() {
-                    @Override
-                    public void onSuccess(String responseBody) {
-                        Logger.d("responsebody: " + responseBody);
-                        loadingDialog.cancel();
-                        ExamDelegate.this.pop();
-                    }
+                OKHttp.getInstance()
+                        .post(UrlConfig.SUBMITPAPER, submitData, new RequestCallback() {
+                            @Override
+                            public void onSuccess(String responseBody) {
+                                Logger.d("responsebody: " + responseBody);
+                                loadingDialog.cancel();
+                                ExamDelegate.this.pop();
+                            }
 
-                    @Override
-                    public void onError(int code, String msg) {
-                        loadingDialog.cancel();
-                    }
+                            @Override
+                            public void onError(int code, String msg) {
+                                loadingDialog.cancel();
+                            }
 
-                    @Override
-                    public void onFail(Call call, IOException e) {
-                        loadingDialog.cancel();
-                    }
-                });
+                            @Override
+                            public void onFail(Call call, IOException e) {
+                                loadingDialog.cancel();
+                            }
+                        });
+                break;
+
+
+        }
     }
 
     @Override

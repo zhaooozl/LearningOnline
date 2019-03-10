@@ -57,6 +57,16 @@
             android:textSize="20sp"/>
 
         <com.joanzapata.iconify.widget.IconTextView
+            android:id="@+id/iv_query_score"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="{fa-cloud-download}"
+            android:textColor="@color/colorHight"
+            android:gravity="center"
+            android:textSize="20sp"/>
+
+        <com.joanzapata.iconify.widget.IconTextView
             android:id="@+id/iv_download"
             android:layout_width="0dp"
             android:layout_height="match_parent"

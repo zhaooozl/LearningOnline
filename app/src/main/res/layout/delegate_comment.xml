@@ -9,16 +9,29 @@
         android:id="@+id/rl_toolbar"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="@color/colorHight">
+        android:background="@android:color/white">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="评论"
+            android:textSize="20sp"
+            android:textColor="@color/colorHight"
+            android:layout_centerInParent="true"
+            />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/colorHight" />
 
     </RelativeLayout>
-
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/srl_refresh"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/rl_toolbar"
-
         >
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rv_comment"

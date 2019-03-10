@@ -3,6 +3,7 @@ package com.example.learn.delegate.teacher;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.OrientationHelper;
 import android.support.v7.widget.RecyclerView;
@@ -34,10 +35,10 @@ import java.util.List;
 import butterknife.BindView;
 import okhttp3.Call;
 
-public class SubjectDelegate extends BaseDelegate implements View.OnClickListener {
+public class SubjectDelegate extends BaseDelegate implements View.OnClickListener, SwipeRefreshLayout.OnRefreshListener {
 
     @BindView(R.id.ib_add_subject)
-    IconButton ibAddSubject;
+    AppCompatImageView ibAddSubject;
     @BindView(R.id.rv_subject)
     RecyclerView mRecyclerView;
     @BindView(R.id.srl_refresh)
@@ -105,5 +106,10 @@ public class SubjectDelegate extends BaseDelegate implements View.OnClickListene
                         mRefreshLayout.setRefreshing(false);
                     }
                 });
+    }
+
+    @Override
+    public void onRefresh() {
+        getCoursesData(mUserId);
     }
 }

@@ -19,6 +19,8 @@ public class ContentHolder extends ViewHolder {
 
     IconTextView ivComment;
 
+    IconTextView iv_query_score;
+
     ProgressBar pbProgress;
 
 
@@ -29,6 +31,6 @@ public class ContentHolder extends ViewHolder {
         ivDownLoad = itemView.findViewById(R.id.iv_download);
         pbProgress = itemView.findViewById(R.id.pb_progress);
         ivComment = itemView.findViewById(R.id.iv_comment);
-
+        iv_query_score = itemView.findViewById(R.id.iv_query_score);
     }
 }

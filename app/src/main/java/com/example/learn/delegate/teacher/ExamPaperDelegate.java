@@ -81,6 +81,7 @@ public class ExamPaperDelegate extends BaseDelegate implements View.OnClickListe
     }
 
     private void getExamPaper(int subjectId) {
+        mLoadingDialog.show();
         final int userType = Configurator.getInstance().get(ConfigType.USER_TYPE);
         String url = UrlConfig.EXAM + "?userType=" + userType + "" + "&subjectId=" + subjectId;
         OKHttp.getInstance()
@@ -94,17 +95,17 @@ public class ExamPaperDelegate extends BaseDelegate implements View.OnClickListe
                         examAdapter2 = new ExamAdapter2(ExamPaperDelegate.this, mLayoutBeans);
                         mRecyclerView.setAdapter(examAdapter2);
                         mRecyclerView.addItemDecoration(new DividerItemDecoration(getContext(), OrientationHelper.VERTICAL));
-
+                        mLoadingDialog.cancel();
                     }
 
                     @Override
                     public void onError(int code, String msg) {
-
+                        mLoadingDialog.cancel();
                     }
 
                     @Override
                     public void onFail(Call call, IOException e) {
-
+                        mLoadingDialog.cancel();
                     }
                 });
 
@@ -114,10 +115,10 @@ public class ExamPaperDelegate extends BaseDelegate implements View.OnClickListe
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.iv_back:
+            case R.id.iv_back:   // 返回
                 pop();
                 break;
-            case R.id.iv_add:
+            case R.id.iv_add:    // 添加
                 PopupMenu popupMenu = new PopupMenu(getActivity(), v);
                 MenuInflater menuInflater = popupMenu.getMenuInflater();
                 menuInflater.inflate(R.menu.menu_add_question, popupMenu.getMenu());
@@ -125,10 +126,10 @@ public class ExamPaperDelegate extends BaseDelegate implements View.OnClickListe
                 popupMenu.setOnMenuItemClickListener(this);
                 popupMenu.show();
                 break;
-            case R.id.btn_cancel:
+            case R.id.btn_cancel:  // dialog取消
                 mQuestionDialog.cancel();
                 break;
-            case R.id.btn_confirm:
+            case R.id.btn_confirm: // dialog确认
                 int type = mQuestionDialog.getmShowType();
                 if (type == 1) {
                     addQuestion();
@@ -136,14 +137,14 @@ public class ExamPaperDelegate extends BaseDelegate implements View.OnClickListe
                     updateQuestion(mQuestionId);
                 }
                 break;
-            case R.id.tv_delete:
+            case R.id.tv_delete:   // 删除
                 Logger.d("tv_delete");
                 int position = (int) v.getTag();
                 LayoutBean layoutBean = mLayoutBeans.get(position);
                 String questionId = layoutBean.getQuestionId();
                 deleteQuestion(questionId);
                 break;
-            case R.id.tv_update:
+            case R.id.tv_update:   // 更新
                 Logger.d("tv_update");
                 int position2 = (int) v.getTag();
                 LayoutBean layoutBean2 = mLayoutBeans.get(position2);
@@ -152,6 +153,7 @@ public class ExamPaperDelegate extends BaseDelegate implements View.OnClickListe
                 mQuestionDialog.setQuestionType(layoutBean2.getLayouttype());
                 mQuestionDialog.et_question.setText(layoutBean2.getQuestion());
                 mQuestionDialog.et_score.setText(layoutBean2.getScore());
+                mQuestionDialog.et_answer.setText(layoutBean2.getStandardanswer());
                 mQuestionId = layoutBean2.getQuestionId();
                 if (layoutBean2.getLayouttype() == 3) {
                     mQuestionDialog.et_optiona.setText(layoutBean2.getOptions().get(0).getValue());
@@ -173,6 +175,9 @@ public class ExamPaperDelegate extends BaseDelegate implements View.OnClickListe
     }
 
     private void addQuestion() {
+        if (!mQuestionDialog.isCompleted()) {
+            return;
+        }
         mLoadingDialog.show();
         String url = UrlConfig.QUESTION + "?operateType=insert" +
                 "&subjectId=" + subjectId + mQuestionDialog.getParams();
@@ -182,6 +187,7 @@ public class ExamPaperDelegate extends BaseDelegate implements View.OnClickListe
                     public void onSuccess(String responseBody) {
                         mQuestionDialog.cancel();
                         mLoadingDialog.cancel();
+                        getExamPaper(subjectId);
                     }
 
                     @Override
@@ -219,6 +225,7 @@ public class ExamPaperDelegate extends BaseDelegate implements View.OnClickListe
 //                        }
 //                        Toast.makeText(getActivity(), msg, Toast.LENGTH_SHORT).show();
                         mLoadingDialog.cancel();
+                        getExamPaper(subjectId);
                     }
 
                     @Override
@@ -256,6 +263,7 @@ public class ExamPaperDelegate extends BaseDelegate implements View.OnClickListe
 //                Toast.makeText(getActivity(), msg, Toast.LENGTH_SHORT).show();
                         mLoadingDialog.cancel();
                         mQuestionDialog.cancel();
+                        getExamPaper(subjectId);
                     }
 
                     @Override

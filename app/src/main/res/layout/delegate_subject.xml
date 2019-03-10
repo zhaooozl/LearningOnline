@@ -11,20 +11,22 @@
         android:layout_height="50dp"
         android:background="@android:color/white">
 
-        <com.joanzapata.iconify.widget.IconButton
+
+        <android.support.v7.widget.AppCompatImageView
             android:id="@+id/ib_add_subject"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="20dp"
-            android:textSize="24sp"
-            android:text="{fa-plus}"
-            android:textColor="@color/colorHight"
-            android:background="@android:color/transparent"
-            android:textStyle="normal"
-            />
+            android:src="@mipmap/add" />
 
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/colorHight" />
 
     </RelativeLayout>
 

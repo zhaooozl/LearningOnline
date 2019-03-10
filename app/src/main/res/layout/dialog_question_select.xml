@@ -1,16 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="400dp"
-    android:layout_height="300dp"
-    android:orientation="vertical">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="330dp"
+    >
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorHight"
+        android:textSize="20sp"
+        android:layout_centerHorizontal="true"
+        />
 
     <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="260dp">
+        android:id="@+id/sv_scroll"
+        android:layout_width="400dp"
+        android:layout_height="260dp"
+        android:layout_below="@id/tv_title"
+        >
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
 
@@ -20,6 +32,15 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:hint="问题" />
+
+            <EditText
+                android:id="@+id/et_answer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:hint="答案"
+                />
+
             <EditText
                 android:id="@+id/et_score"
                 android:layout_width="match_parent"
@@ -65,31 +86,38 @@
         </LinearLayout>
     </ScrollView>
 
-
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_width="400dp"
+        android:layout_height="50dp"
         android:layout_alignParentBottom="true"
         android:orientation="horizontal"
-        android:background="@color/colorBg">
+        android:layout_below="@id/sv_scroll">
 
-        <TextView
+        <android.support.v7.widget.AppCompatButton
             android:id="@+id/btn_cancel"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="取消"
-            android:gravity="center"
-            android:textColor="@color/colorFont"/>
+            android:background="@drawable/sel_button_bg"
+            android:textColor="@drawable/sel_button_text"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginBottom="10dp"
+            />
 
-        <TextView
+        <android.support.v7.widget.AppCompatButton
             android:id="@+id/btn_confirm"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="确认"
-            android:gravity="center"
-            android:textColor="@color/colorFont"/>
+            android:background="@drawable/sel_button_bg"
+            android:textColor="@drawable/sel_button_text"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
+            />
 
     </LinearLayout>
-</LinearLayout>
+</RelativeLayout>

@@ -16,6 +16,7 @@ import com.example.learn.config.UrlConfig;
 import com.example.learn.delegate.base.BaseDelegate;
 import com.example.learn.delegate.bottom.UserType;
 import com.example.learn.delegate.student.ExamDelegate;
+import com.example.learn.delegate.student.PaperDelegate;
 import com.example.learn.delegate.teacher.ExamPaperDelegate;
 import com.example.learn.entiry.common.CommonStatusBean;
 import com.example.learn.entiry.response.RespObjBean;
@@ -62,6 +63,8 @@ public class ContentItemOnClickListener implements View.OnClickListener, Progres
 
     @Override
     public void onClick(View view) {
+        Logger.d("view.getId()========");
+
         switch (view.getId()) {
             case R.id.iv_download:
                 Logger.d("download: +++++++++++++++++++");
@@ -93,6 +96,20 @@ public class ContentItemOnClickListener implements View.OnClickListener, Progres
                 break;
             case R.id.iv_comment:
                 showInputDialog();
+                break;
+            case R.id.iv_query_score:
+                Logger.d("iv_query_score========");
+                MainActivity ac2 = (MainActivity) delegate.getActivity();
+                Bundle bundle2 = new Bundle();
+                bundle2.putInt("subjectId", subjectId);
+                int userType2 = Configurator.getInstance().get(ConfigType.USER_TYPE);
+                if (userType2 == UserType.STUDENT) {
+                    if (delegate != null) {
+                        PaperDelegate paperDelegate = new PaperDelegate();
+                        paperDelegate.setArguments(bundle2);
+                        ac2.start(paperDelegate);
+                    }
+                }
                 break;
             default:
 
