@@ -1,6 +1,10 @@
 package com.example.learn.net.download;
 
+import android.os.Handler;
 import android.util.Log;
+
+import com.example.learn.config.ConfigType;
+import com.example.learn.config.Configurator;
 
 import java.io.IOException;
 
@@ -17,6 +21,8 @@ public class ProgressResponseBody extends ResponseBody {
     private ResponseBody responseBody;
     private BufferedSource bufferedSource;
     private ProgressListener listener;
+
+    private Handler mHandler = Configurator.getInstance().get(ConfigType.HANDLER);
 
     public ProgressResponseBody(ResponseBody responseBody, ProgressListener listener) {
         this.responseBody = responseBody;
@@ -54,12 +60,27 @@ public class ProgressResponseBody extends ResponseBody {
                 }
                 long len = super.read(sink, byteCount);
                 sum += (len == -1 ? 0 : len);
-                int press = (int) ((sum * 1.0f / totalSize) * 100);
+                final int press = (int) ((sum * 1.0f / totalSize) * 100);
                 Log.i("///////////", String.valueOf(totalSize));
                 if (len == -1) {
-                    listener.onDone(totalSize);
+                    if (mHandler != null) {
+                        mHandler.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                listener.onDone(totalSize);
+
+                            }
+                        });
+                    }
                 } else {
-                    listener.onProgress(press, totalSize);
+                    if (mHandler != null) {
+                        mHandler.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                listener.onProgress(press, totalSize);
+                            }
+                        });
+                    }
                 }
                 return len;
             }

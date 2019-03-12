@@ -45,8 +45,9 @@ public class ContentAdapter extends RecyclerView.Adapter<ContentHolder> {
 //        holder.ivExam.setTag(ClickType.TAKE_EXAM);
 //        holder.ivDownLoad.setTag(ClickType.DOWN_LOAD);
         holder.ivDownLoad.setTag(bean.getCourseware());
+        holder.pbProgress.setVisibility(View.INVISIBLE);
         holder.ivExam.setOnClickListener(new ContentItemOnClickListener(mDatas.get(position).getSubjectId(), delegate));
-        holder.ivDownLoad.setOnClickListener(new ContentItemOnClickListener(holder));
+        holder.ivDownLoad.setOnClickListener(new ContentItemOnClickListener(holder, delegate));
         holder.ivComment.setOnClickListener(new ContentItemOnClickListener(bean.getUserId(), delegate));
         holder.iv_query_score.setOnClickListener(new ContentItemOnClickListener(mDatas.get(position).getSubjectId(), delegate));
     }

@@ -39,14 +39,14 @@ public class ContentItemOnClickListener implements View.OnClickListener, Progres
     String url2 = "http://aikanvod.miguvideo.com/video/p/pg/100041/miguaikan_v300/common.wdml";
 
     private BaseDelegate delegate;
-
     private ContentHolder holder;
     private int subjectId = -1;
     private String teacherId;
     EditText editText;
 
-    public ContentItemOnClickListener(ContentHolder holder) {
+    public ContentItemOnClickListener(ContentHolder holder, BaseDelegate delegate) {
         this.holder = holder;
+        this.delegate = delegate;
     }
 
     public ContentItemOnClickListener(String teacherId, BaseDelegate delegate) {
@@ -68,6 +68,7 @@ public class ContentItemOnClickListener implements View.OnClickListener, Progres
         switch (view.getId()) {
             case R.id.iv_download:
                 Logger.d("download: +++++++++++++++++++");
+                holder.pbProgress.setVisibility(View.VISIBLE);
                 String fileName = (String) view.getTag();
                 final String url = UrlConfig.SUBJECT + "?operateType=download&fileName=" + fileName;
                 new OKHttpUtils()
@@ -122,11 +123,13 @@ public class ContentItemOnClickListener implements View.OnClickListener, Progres
     public void onProgress(int mProgress, long contentSize) {
         Logger.d("onProgress: " + mProgress);
         holder.pbProgress.setProgress(mProgress);
+
     }
 
     @Override
     public void onDone(long totalSize) {
-
+        holder.pbProgress.setVisibility(View.INVISIBLE);
+        Toast.makeText(delegate.getActivity(), "下载完成", Toast.LENGTH_SHORT).show();
     }
 
     private void showInputDialog() {
@@ -145,8 +148,6 @@ public class ContentItemOnClickListener implements View.OnClickListener, Progres
     public void onClick(final DialogInterface dialog, int which) {
         switch (which) {
             case AlertDialog.BUTTON_POSITIVE:
-
-
                 final LoadingDialog loadingDialog = new LoadingDialog(delegate.getActivity());
                 loadingDialog.show();
 

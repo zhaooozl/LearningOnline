@@ -1,6 +1,7 @@
 package com.example.learn.net.download;
 
 import android.os.Environment;
+import android.text.TextUtils;
 
 import com.example.learn.net.interceptor.LoggingInterceptor;
 import com.orhanobut.logger.Logger;
@@ -102,8 +103,9 @@ public class OKHttpUtils {
 
 
     private void write(Response response) {
+        String fileName = getHeaderFileName(response);
         String path = Environment.getExternalStorageDirectory().getAbsolutePath();
-        File file = new File(path, "common.lua");
+        File file = new File(path, fileName);
         Logger.d("write file: " + file.getAbsolutePath());
 
         FileOutputStream fos = null;
@@ -136,6 +138,22 @@ public class OKHttpUtils {
             }
         }
 
+    }
+
+    private static String getHeaderFileName(Response response) {
+        String dispositionHeader = response.header("Content-Disposition");
+        if (!TextUtils.isEmpty(dispositionHeader)) {
+            dispositionHeader.replace("attachment;filename=", "");
+            dispositionHeader.replace("filename*=utf-8", "");
+            String[] strings = dispositionHeader.split("; ");
+            if (strings.length > 1) {
+                dispositionHeader = strings[1].replace("filename=", "");
+                dispositionHeader = dispositionHeader.replace("\"", "");
+                return dispositionHeader;
+            }
+            return "";
+        }
+        return "";
     }
 
 

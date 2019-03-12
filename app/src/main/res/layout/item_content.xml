@@ -85,9 +85,10 @@
         android:visibility="visible"
         style="@android:style/Widget.ProgressBar.Horizontal"
         android:max="100"
-        android:progress="10"
-        android:secondaryProgress="8"
+        android:progress="0"
+        android:secondaryProgress="0"
         android:layout_gravity="bottom"
+        android:progressDrawable="@drawable/progress_horizontal"
         />
 
 </android.support.v7.widget.LinearLayoutCompat>

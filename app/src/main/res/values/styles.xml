@@ -22,9 +22,5 @@
 
     </style>
 
-    <style name="buttonStyle" parent="@android:style/Widget.Button">
-        <item name="android:textColor">@android:color/white</item>
-
-    </style>
 
 </resources>
