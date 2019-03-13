@@ -133,8 +133,6 @@ public class ContentItemOnClickListener implements View.OnClickListener, Progres
     }
 
     private void showInputDialog() {
-        /*@setView 装入一个EditView
-         */
         editText = new EditText(delegate.getActivity());
         AlertDialog.Builder inputDialog =
                 new AlertDialog.Builder(delegate.getActivity());

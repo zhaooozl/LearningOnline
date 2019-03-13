@@ -11,6 +11,7 @@ import com.example.learn.storage.PrefKey;
 import com.joanzapata.iconify.Iconify;
 import com.joanzapata.iconify.fonts.FontAwesomeModule;
 import com.joanzapata.iconify.fonts.IoniconsModule;
+import com.joanzapata.iconify.fonts.SimpleLineIconsModule;
 import com.orhanobut.logger.AndroidLogAdapter;
 import com.orhanobut.logger.Logger;
 
@@ -37,6 +38,13 @@ public class ExApplication extends Application {
         // 图标库
         Iconify
                 .with(new FontAwesomeModule())
+//                .with(new EntypoModule())
+//                .with(new TypiconsModule())
+//                .with(new MaterialModule())
+//                .with(new MaterialCommunityModule())
+//                .with(new MeteoconsModule())
+//                .with(new WeathericonsModule())
+                .with(new SimpleLineIconsModule())
                 .with(new IoniconsModule());
 
 

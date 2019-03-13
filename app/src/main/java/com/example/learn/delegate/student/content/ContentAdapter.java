@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import com.example.learn.config.ConfigType;
 import com.example.learn.config.Configurator;
 import com.example.learn.delegate.base.BaseDelegate;
+import com.example.learn.delegate.bottom.UserType;
 import com.example.learn.entiry.CourseBean;
 import com.example.learn.learningonline.R;
 import com.orhanobut.logger.Logger;
@@ -19,6 +20,7 @@ import java.util.List;
 public class ContentAdapter extends RecyclerView.Adapter<ContentHolder> {
 
     private Context mContext = Configurator.getInstance().get(ConfigType.APP_CONTENT);
+    private int userType = Configurator.getInstance().get(ConfigType.USER_TYPE);
 
     private List<CourseBean> mDatas;
     private BaseDelegate delegate;
@@ -48,8 +50,16 @@ public class ContentAdapter extends RecyclerView.Adapter<ContentHolder> {
         holder.pbProgress.setVisibility(View.INVISIBLE);
         holder.ivExam.setOnClickListener(new ContentItemOnClickListener(mDatas.get(position).getSubjectId(), delegate));
         holder.ivDownLoad.setOnClickListener(new ContentItemOnClickListener(holder, delegate));
-        holder.ivComment.setOnClickListener(new ContentItemOnClickListener(bean.getUserId(), delegate));
-        holder.iv_query_score.setOnClickListener(new ContentItemOnClickListener(mDatas.get(position).getSubjectId(), delegate));
+        if (userType == UserType.STUDENT) {
+            holder.ivComment.setVisibility(View.VISIBLE);
+            holder.ivComment.setOnClickListener(new ContentItemOnClickListener(bean.getUserId(), delegate));
+            holder.iv_query_score.setVisibility(View.VISIBLE);
+            holder.iv_query_score.setOnClickListener(new ContentItemOnClickListener(mDatas.get(position).getSubjectId(), delegate));
+        } else {
+            holder.ivComment.setVisibility(View.GONE);
+            holder.iv_query_score.setVisibility(View.GONE);
+        }
+
     }
 
     @Override

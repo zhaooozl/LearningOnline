@@ -19,7 +19,7 @@
         android:id="@+id/et_answer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="足"
+        android:text=""
         android:textColor="@color/colorFont"
         android:layout_below="@id/tv_question"
         android:layout_marginTop="5dp"

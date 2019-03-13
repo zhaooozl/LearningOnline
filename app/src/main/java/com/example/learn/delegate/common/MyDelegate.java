@@ -88,7 +88,7 @@ public class MyDelegate extends BaseDelegate implements View.OnClickListener {
                         });
                         List<UserInfoBean> userInfoBeans = baseBean.getData();
                         UserInfoBean userInfoBean = userInfoBeans.get(0);
-                        tvId.setText("学号: " + userInfoBean.getId());
+                        tvId.setText("学号: " + userInfoBean.getUserId());
                         tvName.setText(userInfoBean.getUserName());
                         tvGender.setText("性别: " + userInfoBean.getGender());
                         tvBirth.setText("出生年月: " + userInfoBean.getBirth());
