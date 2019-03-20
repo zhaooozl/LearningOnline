@@ -93,27 +93,27 @@
         android:orientation="horizontal"
         android:layout_below="@id/sv_scroll">
 
-        <android.support.v7.widget.AppCompatButton
+        <Button
             android:id="@+id/btn_cancel"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="取消"
             android:background="@drawable/sel_button_bg"
-            android:textColor="@drawable/sel_button_text"
+            android:textColor="@color/colorFont"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="5dp"
             android:layout_marginBottom="10dp"
             />
 
-        <android.support.v7.widget.AppCompatButton
+        <Button
             android:id="@+id/btn_confirm"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="确认"
             android:background="@drawable/sel_button_bg"
-            android:textColor="@drawable/sel_button_text"
+            android:textColor="@color/colorFont"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="10dp"
             android:layout_marginBottom="10dp"

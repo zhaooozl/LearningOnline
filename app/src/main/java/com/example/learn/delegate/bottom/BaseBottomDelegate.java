@@ -69,7 +69,7 @@ public class BaseBottomDelegate extends BaseDelegate implements View.OnClickList
             menuBeans.add(bean5);
         } else if (userType == UserType.TEACHER) {
             BottomMenuBean learnBean = new BottomMenuBean(0, "{fa-graduation-cap}", "科目", normal, theme);
-            BottomMenuBean commentBean = new BottomMenuBean(1, "{fa-user}", "评论", normal, theme);
+            BottomMenuBean commentBean = new BottomMenuBean(1, "{fa-comment }", "评论", normal, theme);
             BottomMenuBean myBean = new BottomMenuBean(2, "{fa-user}", "我的", normal, theme);
             menuBeans.add(learnBean);
             menuBeans.add(commentBean);

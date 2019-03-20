@@ -31,6 +31,7 @@ import com.example.learn.view.QuestionDialog;
 import com.orhanobut.logger.Logger;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 import butterknife.BindView;
@@ -151,18 +152,24 @@ public class ExamPaperDelegate extends BaseDelegate implements View.OnClickListe
                 mQuestionDialog.clear();
                 mQuestionDialog.setmShowType(2);
                 mQuestionDialog.setQuestionType(layoutBean2.getLayouttype());
-                mQuestionDialog.et_question.setText(layoutBean2.getQuestion());
+                String question = layoutBean2.getQuestion();
+                question = question.substring(2, question.length());
+                mQuestionDialog.et_question.setText(question);
                 mQuestionDialog.et_score.setText(layoutBean2.getScore());
                 mQuestionDialog.et_answer.setText(layoutBean2.getStandardanswer());
                 mQuestionId = layoutBean2.getQuestionId();
                 if (layoutBean2.getLayouttype() == 3) {
+                    mQuestionDialog.tv_title.setText("修改选择题");
                     mQuestionDialog.et_optiona.setText(layoutBean2.getOptions().get(0).getValue());
                     mQuestionDialog.et_optionb.setText(layoutBean2.getOptions().get(1).getValue());
                     mQuestionDialog.et_optionc.setText(layoutBean2.getOptions().get(2).getValue());
                     mQuestionDialog.et_optiond.setText(layoutBean2.getOptions().get(3).getValue());
                 } else if (layoutBean2.getLayouttype() == 4) {
+                    mQuestionDialog.tv_title.setText("修改判断题");
                     mQuestionDialog.et_optiona.setText(layoutBean2.getOptions().get(0).getValue());
                     mQuestionDialog.et_optionb.setText(layoutBean2.getOptions().get(1).getValue());
+                } else {
+                    mQuestionDialog.tv_title.setText("修改填空题");
                 }
                 mQuestionDialog.show();
                 break;
@@ -179,8 +186,13 @@ public class ExamPaperDelegate extends BaseDelegate implements View.OnClickListe
             return;
         }
         mLoadingDialog.show();
-        String url = UrlConfig.QUESTION + "?operateType=insert" +
-                "&subjectId=" + subjectId + mQuestionDialog.getParams();
+        String url = "";
+        try {
+            url = UrlConfig.QUESTION + "?operateType=insert" +
+                    "&subjectId=" + subjectId + mQuestionDialog.getParams();
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
         OKHttp.getInstance()
                 .get(url, new RequestCallback() {
                     @Override
@@ -243,8 +255,13 @@ public class ExamPaperDelegate extends BaseDelegate implements View.OnClickListe
 
     private void updateQuestion(String questionId) {
         mLoadingDialog.show();
-        final String url = UrlConfig.QUESTION + "?operateType=update" +
-                "&questionId=" + questionId + mQuestionDialog.getParams();
+        String url = "";
+        try {
+            url = UrlConfig.QUESTION + "?operateType=update" +
+                    "&questionId=" + questionId + mQuestionDialog.getParams();
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
 
         OKHttp.getInstance()
                 .get(url, new RequestCallback() {
@@ -286,20 +303,26 @@ public class ExamPaperDelegate extends BaseDelegate implements View.OnClickListe
         switch (item.getItemId()) {
             case R.id.menu_add_select:
                 questionType = 3;
+                mQuestionDialog.clear();
                 mQuestionDialog.setQuestionType(questionType);
                 mQuestionDialog.setmShowType(1);
+                mQuestionDialog.tv_title.setText("添加选择题");
                 mQuestionDialog.show();
                 break;
             case R.id.menu_add_judge:
                 questionType = 4;
+                mQuestionDialog.clear();
                 mQuestionDialog.setQuestionType(questionType);
                 mQuestionDialog.setmShowType(1);
+                mQuestionDialog.tv_title.setText("添加判断题");
                 mQuestionDialog.show();
                 break;
             case R.id.menu_add_fill:
                 questionType = 5;
+                mQuestionDialog.clear();
                 mQuestionDialog.setQuestionType(questionType);
                 mQuestionDialog.setmShowType(1);
+                mQuestionDialog.tv_title.setText("添加填空题");
                 mQuestionDialog.show();
 
                 break;

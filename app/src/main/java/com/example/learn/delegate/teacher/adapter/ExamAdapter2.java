@@ -83,13 +83,13 @@ public class ExamAdapter2 extends RecyclerView.Adapter<ExamHolder2> {
             holder.et_score.setText(layoutBean.getScore());
             Option option0 = layoutBean.getOptions().get(0);
             Logger.d("chioce: " + option0.getKey() + "." + option0.getValue());
-            holder.option0.setText(option0.getValue());
+            holder.option0.setText(option0.getKey() + "." + option0.getValue());
             Option option1 = layoutBean.getOptions().get(1);
-            holder.option1.setText(option1.getValue());
+            holder.option1.setText(option0.getKey() + "." + option1.getValue());
             Option option2 = layoutBean.getOptions().get(2);
-            holder.option2.setText(option2.getValue());
+            holder.option2.setText(option0.getKey() + "." + option2.getValue());
             Option option3 = layoutBean.getOptions().get(3);
-            holder.option3.setText(option3.getValue());
+            holder.option3.setText(option0.getKey() + "." + option3.getValue());
 //            holder.ll_item_question.setOnClickListener((ExamPaperDelegate) delegate);
             holder.ll_item_question.setTag(position);
             holder.tv_delete.setOnClickListener((ExamPaperDelegate) delegate);

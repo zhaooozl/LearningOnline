@@ -6,6 +6,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.AppCompatButton;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -14,17 +15,23 @@ import com.example.learn.config.UrlConfig;
 import com.example.learn.learningonline.R;
 import com.orhanobut.logger.Logger;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class QuestionDialog extends Dialog {
-
+    // 取消button
     @BindView(R.id.btn_cancel)
-    public AppCompatButton btn_cancel;
+    public Button btn_cancel;
+    // 确认button
     @BindView(R.id.btn_confirm)
-    public AppCompatButton btn_confirm;
+    public Button btn_confirm;
+    // 问题
     @BindView(R.id.et_question)
     public EditText et_question;
+    // 选项
     @BindView(R.id.et_optiona)
     public EditText et_optiona;
     @BindView(R.id.et_optionb)
@@ -33,10 +40,13 @@ public class QuestionDialog extends Dialog {
     public EditText et_optionc;
     @BindView(R.id.et_optiond)
     public EditText et_optiond;
+    // 分数
     @BindView(R.id.et_score)
     public EditText et_score;
+    // 标题
     @BindView(R.id.tv_title)
     public TextView tv_title;
+    // 标准答案
     @BindView(R.id.et_answer)
     public EditText et_answer;
 
@@ -69,21 +79,21 @@ public class QuestionDialog extends Dialog {
             et_optionb.setVisibility(View.VISIBLE);
             et_optionc.setVisibility(View.VISIBLE);
             et_optiond.setVisibility(View.VISIBLE);
-            tv_title.setText("添加选题题");
+//            tv_title.setText("添加选择题");
             et_answer.setHint("答案：（A B C D）");
         } else if (questionType == 4) {    // 判断题
             et_optiona.setVisibility(View.GONE);
             et_optionb.setVisibility(View.GONE);
             et_optionc.setVisibility(View.GONE);
             et_optiond.setVisibility(View.GONE);
-            tv_title.setText("添加判断题");
+//            tv_title.setText("添加判断题");
             et_answer.setHint("答案：（对 错）");
         } else if (questionType == 5) {    // 填空题
             et_optiona.setVisibility(View.GONE);
             et_optionb.setVisibility(View.GONE);
             et_optionc.setVisibility(View.GONE);
             et_optiond.setVisibility(View.GONE);
-            tv_title.setText("添加填空题");
+//            tv_title.setText("添加填空题");
             et_answer.setHint("答案");
         }
         super.show();
@@ -110,7 +120,9 @@ public class QuestionDialog extends Dialog {
     }
 
     public void clear() {
+        tv_title.setText("");
         et_question.setText("");
+        et_answer.setText("");
         et_score.setText("");
         et_optiona.setText("");
         et_optionb.setText("");
@@ -118,7 +130,7 @@ public class QuestionDialog extends Dialog {
         et_optiond.setText("");
     }
 
-    public String getParams() {
+    public String getParams() throws UnsupportedEncodingException {
         final String score = et_score.getText().toString().trim();
         final String question = et_question.getText().toString().trim();
         final String standardanswer = et_answer.getText().toString().trim();
@@ -138,13 +150,19 @@ public class QuestionDialog extends Dialog {
 
         }
 
+        final String eQuestion = URLEncoder.encode(question, "utf-8");
+        final String eOptiona = URLEncoder.encode(optiona, "utf-8");
+        final String eOptionb = URLEncoder.encode(optionb, "utf-8");
+        final String eOptionc = URLEncoder.encode(optionc, "utf-8");
+        final String eOptiond = URLEncoder.encode(optiond, "utf-8");
+
         final String params = "&questionType=" + questionType + "&score=" + score +
-                "&question=" + question +
+                "&question=" + eQuestion +
                 "&standardanswer=" + standardanswer +
-                "&optiona=" + optiona +
-                "&optionb=" + optionb +
-                "&optionc=" + optionc +
-                "&optiond=" + optiond;
+                "&optiona=" + eOptiona +
+                "&optionb=" + eOptionb +
+                "&optionc=" + eOptionc +
+                "&optiond=" + eOptiond;
 
         return params;
     }
